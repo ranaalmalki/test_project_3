@@ -4,23 +4,26 @@ const mongoose = require('mongoose');
 
 const User = require('../models/User');
 
-router.get('user/:userId', async (req, res) => {
+router.get('/:userId', async (req, res) => {
 
     try {
         const user = await User.findById(req.params.userId);
         res.status(200).json(user); 
     } catch (err) {
-         res.status(404).json({message: err});
+         res.status(404).json({message: 'Id not found'});
     }
 });
 
 router.get('/', (req, res) => {
-    if(req.query.name) {
-      res.send(`You have requested a person ${req.query.name}`)
-    }
-    else {
-      res.send('You have requested a user')
-    }
+  User.find()
+  // Return all Articles as an Array
+  .then((allUser) => {
+    res.status(200).json({ users: allUser });
+  })
+  // Catch any errors that might occur
+  .catch((error) => {
+    res.status(500).json({ error: error });
+  });
   });
 
 router.post('/', async (req, res) => {
