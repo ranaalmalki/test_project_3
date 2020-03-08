@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
+const db = require('./bd');
 require('dotenv/config');
 
 const connectDB = async () => {
   await  mongoose.connect(
-    "mongodb://localhost:27017/users",
+    db,
     { useNewUrlParser: true, useUnifiedTopology: true },
     () => {
-      console.log('=========the connection with mongodb is ESTABLISHED=======');
+      console.log('=========the connection with mongodb is ESTABLISHED=======',db);
     }
   );}
   
-
 module.exports = connectDB;

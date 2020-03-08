@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const connection = require('./dbConncection')
+const connection = require('./config/dbConncection')
 const bodyParser = require('body-parser');
 const userRoute =require('./Routes/user');
 require('dotenv/config');
@@ -11,7 +11,7 @@ connection();
 app.use(bodyParser.json());
 app.use(express.json());
 
-app.use('/create',userRoute);
+app.use('/user',userRoute);
 app.use((req, res, next) => {
   console.log(`${new Date().toString()} => ${req.originalUrl}`, req.body)
   next()
