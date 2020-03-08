@@ -1,75 +1,75 @@
-// Require necessary NPM packages
 const express = require('express');
-
-// Require Mongoose Model for Article
-const Article = require('../models/article');
-
-// Instantiate a Router (mini app that only handles routes)
 const router = express.Router();
+const mongoose = require('mongoose');
 
-/**
- * Action:        INDEX
- * Method:        GET
- * URI:           /api/articles
- * Description:   Get All Articles
- */
-router.get('/api/articles', (req, res) => {
-  Article.find()
-  // Return all Articles as an Array
-  .then((allArticles) => {
-    res.status(200).json({ articles: allArticles });
-  })
-  // Catch any errors that might occur
-  .catch((error) => {
-    res.status(500).json({ error: error });
-  });
-});
+const Trans = require('../models/Transaction');
+const User = require('../models/User');
+
+
 
 /**
  * Action:        SHOW
  * Method:        GET
- * URI:           /api/articles/5d664b8b68b4f5092aba18e9
+ * URI:           /user/5d664b8b68b4f5092aba18e9
  * Description:   Get An Article by Article ID
  */
-router.get('/api/articles/:id', (req, res) => {
-  Article.findById(req.params.id)
-    .then((article) => {
-      if (article) {
-        res.status(200).json({ article: article });
-      } else {
-        // If we couldn't find a document with the matching ID
-        res.status(404).json({
-          error: {
-            name: 'DocumentNotFoundError',
-            message: 'The provided ID doesn\'t match any documents'
-          }
-        });
-      }
-    })
-    // Catch any errors that might occur
-    .catch((error) => {
-      res.status(500).json({ error: error });
-    })
+router.get('/:userId', async (req, res) => {
+
+  try {
+    const user = await User.findById(req.params.userId);
+    res.status(200).json(user);
+  }
+  catch (err) {
+    res.status(404).json({ message: "The provided ID doesn\'t match any documents" });
+  }
 });
 
- /**
-  * Action:       CREATE
-  * Method:       POST
-  * URI:          /api/articles
-  * Description:  Create a new Article
-  */
- router.post('/api/articles', (req, res) => {
-   Article.create(req.body.article)
-   // On a successful `create` action, respond with 201
-   // HTTP status and the content of the new article.
-   .then((newArticle) => {
-     res.status(201).json({ article: newArticle });
-   })
-   // Catch any errors that might occur
-   .catch((error) => {
-     res.status(500).json({ error: error });
-   });
- });
+// router.patch('/:userId/newtrans',async (req, res) => {
+//   // store new tweet in memory with data from request body
+//   const { TransType, TransDescription, TransState } = req.body
+//   let trans = {}
+//     trans.TransType = TransType,
+//     trans.TransDescription = TransDescription,
+//     trans.TransState = TransState
+//   // const saveTrans = new Trans({ TransType: req.body.TransType,TransDescription:req.body.TransDescription,TransState: req.body.TransState});
+//   const saveTrans = new Trans(trans)
+//   try {
+//     await saveTrans.save();
+//     res.status(200).json(saveTrans);
+//   } catch (err) {
+//     res.status(404).json(err);
+//   }  
+//   // find user in db by id and add new tweet
+//   User.findById(req.params.userId, (error, foundUser) => {
+//     foundUser.Transaction.push(saveTrans);
+//     foundUser.save((err, savedUser) => {
+//       res.json(saveTrans);
+//     });
+//   });
+// });
+/**
+ * Action:       CREATE
+ * Method:       POST
+ * URI:          /user
+ * Description:  Create a new Article
+ */
+
+router.post('/', async (req, res) => {
+  const { name, Password, phone, email } = req.body
+  let user = {}
+    user.name = name,
+    user.Password = Password,
+    user.phone = phone,
+    user.email = email
+  const saveUser = new User(user)
+  try {
+    await saveUser.save();
+    res.status(200).json(saveUser);
+  } catch (err) {
+    res.status(404).json(err);
+  }
+});
+
 
   /**
    * Action:      UPDATE
@@ -78,37 +78,17 @@ router.get('/api/articles/:id', (req, res) => {
    * Description: Update An Article by Article ID
    */
 
-   /**
-    * Action:       DESTROY
-    * Method:       DELETE
-    * URI:          /api/articles/5d664b8b68b4f5092aba18e9
-    * Description:  Delete An Article by Article ID
-    */
-   router.delete('/api/articles/:id', (req, res) => {
-    Article.findById(req.params.id)
-    .then((article) => {
-      if (article) {
-        // Pass the result of Mongoose's `.delete` method to the next `.then`
-        return article.remove();
-      } else {
-        // If we couldn't find a document with the matching ID
-        res.status(404).json({
-          error: {
-            name: 'DocumentNotFoundError',
-            message: 'The provided ID Doesn\'t match any documents'
-          }
-        });
-      }
-    })
-    .then(() => {
-      // If the deletion succeeded, return 204 and no JSON
-      res.status(204).end();
-    })
-    // Catch any errors that might occur
-    .catch((error) => {
-      res.status(500).json({ error: error });
-    });
-   });
+  // router.patch('/:userId', (req, res) => {
+  //    try {
 
-// Export the Router so we can use it in the server.js file
-module.exports = router;
+  //   const user = await User.findOneAndUpdate(req.params.userId);
+  //   res.status(200).json({user:user,});
+  // }
+  // catch (err) {
+  //   res.status(404).json({ message: "The provided ID doesn\'t match any documents" });
+  // }
+
+  //  });
+
+
+module.exports = router

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+const Schema = mongoose.Schema;
 
 const UserSchema = mongoose.Schema({
     name: {
@@ -25,6 +26,13 @@ const UserSchema = mongoose.Schema({
           validator: () => Promise.resolve(true),
           message: 'Email validation failed'
         }
-      },   
+      },
+      Transaction: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Transaction'
+        }
+      ]   
 });
 module.exports = mongoose.model('users', UserSchema)
+
