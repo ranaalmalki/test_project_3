@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import './Register.css';
 
+
 export default class Register extends Component {
   render() {
     return (
@@ -12,7 +13,7 @@ export default class Register extends Component {
           data-toggle="modal"
           data-target="#exampleModal"
         >
-          Sign Up
+          Register
         </button>
         {/* <!-- Modal --> */}
         <div
@@ -27,7 +28,7 @@ export default class Register extends Component {
             <div class="modal-content">
               <div class="modal-body">
                 <div class="column" id="main">
-                  <h1>Sign Up </h1>
+                  <h1>Register </h1>
                   <h3>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit
                   </h3>
@@ -79,8 +80,7 @@ export default class Register extends Component {
                   {/* <?xml version="1.0" encoding="UTF-8"?> */}
                   <svg width="67px" height="578px" viewBox="0 0 67 578" version="1.1" xmlns="http://www.w3.org/2000/svg"xmlnsxlink="http://www.w3.org/1999/xlink">
                   {/* <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com --> */}
-                  <title>Path</title>
-                  <desc>Created with Sketch.</desc>
+              
                   <g
                     id="Page-1"
                     stroke="none"
@@ -115,3 +115,4 @@ export default class Register extends Component {
     );
   }
 }
+
