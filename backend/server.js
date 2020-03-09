@@ -16,7 +16,7 @@ app.use(express.json());
 
 
 app.use('/user',userRoute);
-app.use('/user',transactionRoute);
+app.use('/addtrans',transactionRoute);
 app.use((req, res, next) => {
   console.log(`${new Date().toString()} => ${req.originalUrl}`, req.body)
   next()
