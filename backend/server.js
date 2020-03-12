@@ -3,19 +3,26 @@ const app = express();
 const mongoose = require('mongoose');
 const connection = require('./config/dbConncection')
 const bodyParser = require('body-parser');
-const userRoute =require('./Routes/user');
+const empRoute =require('./Routes/emp');
 const router = express.Router();
+const cors = require('cors');
+const passport = require('passport');
+const path = require('path');
 
 const transactionRoute = require('./Routes/transaction');
 require('dotenv/config');
 
 
 connection();
-app.use(bodyParser.json());
 app.use(express.json());
+// BodyParser Middleware
+app.use(bodyParser.json());
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 
-app.use('/user',userRoute);
+app.use('/emp',empRoute);
 app.use('/addtrans',transactionRoute);
 app.use((req, res, next) => {
   console.log(`${new Date().toString()} => ${req.originalUrl}`, req.body)

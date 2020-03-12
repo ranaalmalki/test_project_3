@@ -1,6 +1,7 @@
 import React from 'react';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import Transaction from './component/transaction/transaction'
 import Register from './component/Register';
+import LogIn from './component/LogIn'
 import HomePage from './component/home_page/HomePage';
 import './App.css';
 import './component/home_page/HomePage.css';
@@ -8,8 +9,10 @@ import './component/home_page/HomePage.css';
 function App() {
   return (
     <div>
+      <Transaction />
       {/* <Register/> */}
-      <HomePage/>
+      {/* <LogIn /> */}
+      {/* <HomePage/> */}
     </div>
   );
 }
