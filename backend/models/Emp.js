@@ -35,18 +35,18 @@ const EmpSchema = mongoose.Schema({
       maxlength: [10,'Pease inter correct phone number'],
       required: [true, 'Emp phone number required']
     },
-    Transaction: [
+    Tickets: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Transaction'
+        ref: 'Tickets'
       }
-    ] 
+    ]  
     
 });
 
 EmpSchema.plugin(uniqueValidator);
 
-const Emp = module.exports = mongoose.model('Emp', EmpSchema);
+module.exports = mongoose.model('Emp', EmpSchema);
 
 // Find the user by ID
 module.exports.getUserById =  (id, callback) =>{

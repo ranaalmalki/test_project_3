@@ -4,12 +4,11 @@ const mongoose = require('mongoose');
 const connection = require('./config/dbConncection')
 const bodyParser = require('body-parser');
 const empRoute =require('./Routes/emp');
-const router = express.Router();
 const cors = require('cors');
 const passport = require('passport');
 const path = require('path');
 
-const transactionRoute = require('./Routes/transaction');
+const transactionRoute = require('./Routes/ticket');
 require('dotenv/config');
 
 
@@ -23,7 +22,7 @@ app.use(passport.session());
 
 
 app.use('/emp',empRoute);
-app.use('/addtrans',transactionRoute);
+app.use('/emp',transactionRoute);
 app.use((req, res, next) => {
   console.log(`${new Date().toString()} => ${req.originalUrl}`, req.body)
   next()

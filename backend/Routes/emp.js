@@ -4,18 +4,20 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const Emp = require('../models/Emp');
 const config = require('../config/bd');
+const Trans = require('../models/Ticket');
+
 
 
 router.post('/register', (req, res) => {
-  const {empFullName,empUsername,email,password,empPhone} = req.body;
-  const emp = {}
-        emp.empFullName = empFullName,
-        emp.empUsername=empUsername,
-        emp.email=email+'@enjaz.com',
-        emp.empPhone=empPhone,
-        emp.password=password
+    const { empFullName, empUsername, email, password, empPhone } = req.body;
+    const emp = {}
+    emp.empFullName = empFullName,
+        emp.empUsername = empUsername,
+        emp.email = email + '@enjaz.com',
+        emp.empPhone = empPhone,
+        emp.password = password
     let newEmp = new Emp(emp)
-    
+
     Emp.addUser(newEmp, (err, emp) => {
         if (err) {
             let message = "";
