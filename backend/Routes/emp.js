@@ -4,7 +4,7 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const Emp = require('../models/Emp');
 const config = require('../config/bd');
-const Trans = require('../models/Ticket');
+const Ticket = require('../models/Ticket');
 
 
 
