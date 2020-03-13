@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-
+const Schema = mongoose.Schema;
 const TicketSchema = mongoose.Schema({
   TicketType: {
         type: String,
@@ -14,7 +14,15 @@ const TicketSchema = mongoose.Schema({
         type: String,
         required: [true, 'Ticket State required'],
         enum:['Open', 'onProgress','closed']
-      }
+      },
+      TicketsEmp:[]
+
+      // TicketsEmp: [
+      //   {
+      //     type: Schema.Types.empUsername,
+      //     ref: 'Employees'
+      //   }
+      // ] 
    
 });
 module.exports = mongoose.model('Ticket',TicketSchema)
