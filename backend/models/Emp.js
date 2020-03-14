@@ -40,17 +40,20 @@ const EmpSchema = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'Tickets'
       }
-    ]  
+    ]  ,
+    admin:{
+      type:Boolean ,default:false
+    }
     
 });
 
 EmpSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model('Emp', EmpSchema);
+const Emp = module.exports = mongoose.model('Emp', EmpSchema);
 
 // Find the user by ID
 module.exports.getUserById =  (id, callback) =>{
-    User.findById(id, callback);
+    Emp.findById(id, callback);
 }
 
 // Find the user by Its username
@@ -58,7 +61,7 @@ module.exports.getUserByUsername =  (empUsername, callback) =>{
     const query = {
       empUsername: empUsername
     }
-    User.findOne(query, callback);
+    Emp.findOne(query, callback);
 }
 
 // to Register the user
@@ -79,23 +82,5 @@ module.exports.comparePassword =  (password, hash, callback) =>{
         callback(null, isMatch);
     });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
 
 

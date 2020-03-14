@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+// const passport = require('../config/passport');
 const jwt = require('jsonwebtoken');
 const Emp = require('../models/Emp');
 const config = require('../config/bd');
 const Ticket = require('../models/Ticket');
-
 
 
 router.post('/register', (req, res) => {
@@ -62,7 +62,7 @@ router.post('/login', (req, res) => {
                         empPhone: emp.empPhone
                     }
                 }, config.secret, {
-                    expiresIn: 28800 // for 1 week time in seconds
+                    expiresIn: 604800 // for 1 week time in milliseconds
                 });
                 return res.json({
                     success: true,
@@ -77,20 +77,6 @@ router.post('/login', (req, res) => {
         });
     });
 });
-
-//-------------Get all tickets-------------------
-router.get('/tc', (req, res) => {
-    Emp.find({ })
-      .populate('Ticket')
-      .exec((err, Emp) => {
-        if (err) {
-          res.status(500).send(err);
-          return;
-        }
-        console.log(`found and populated all : ${Emp}`);
-        res.json(Emp);
-      });
-  });
 
 /**
  * Get Authenticated emp profile

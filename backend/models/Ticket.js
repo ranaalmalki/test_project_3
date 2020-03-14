@@ -15,14 +15,14 @@ const TicketSchema = mongoose.Schema({
         required: [true, 'Ticket State required'],
         enum:['Open', 'onProgress','closed']
       },
-      // TicketsEmp:[]
+      TicketsEmp:[]
 
-      TicketsEmp: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: 'Emp'
-        }
-      ] 
+      // TicketsEmp: [
+      //   {
+      //     type: Schema.Types.empUsername,
+      //     ref: 'Employees'
+      //   }
+      // ] 
    
 });
 module.exports = mongoose.model('Ticket',TicketSchema)

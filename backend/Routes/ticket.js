@@ -32,9 +32,9 @@ router.post('/:empId',  (req, res) => {
 
 
 //-------------Get all tickets-------------------
-  router.get('/emp_ticket', (req, res) => {
-    Ticket.find({ })
-      .populate('TicketsEmp')
+  router.get('/tc', (req, res) => {
+    Emp.find({ })
+      .populate('Ticket')
       .exec((err, Emp) => {
         if (err) {
           res.status(500).send(err);
@@ -48,21 +48,16 @@ router.post('/:empId',  (req, res) => {
 //-------------Pass ticket to another Emp-------------------
 router.patch('/PassTicket/:TicketId',  (req, res) => {
 
-  Ticket.findById(req.params.TicketId, (error, foundTicket) => {
-    foundTicket.TicketsEmp.push(req.body.TicketsEmp);
+  Ticket.findById(req.params.TicketId,async (error, foundTicket) => {
+    try{
+      await foundTicket.TicketsEmp.push(req.body.TicketsEmp);
       foundTicket.save()
       res.status(200).json(foundTicket.TicketsEmp);
-  });
-  Emp.findById(req.body.TicketsEmp,async (foundEmp) => {
-    try{
-      await foundEmp.Tickets.push(foundTicket);
-      foundEmp.save()
-      res.status(200).json(foundTicket);
     }
     catch(error){
       res.status(404).json(error);
     }
-  }); 
+  });
 
 });
 
