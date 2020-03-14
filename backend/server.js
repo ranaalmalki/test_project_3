@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
 const connection = require("./config/dbConncection");
 const bodyParser = require("body-parser");
 const empRoute = require("./Routes/emp");
@@ -15,8 +14,10 @@ require("dotenv/config");
 connection();
 app.use(express.json());
 // BodyParser Middleware
+app.use(cors());
 app.use(bodyParser.json());
 // Passport Middleware
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -38,19 +39,6 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.sendFile(path.join(__dirname, "../public/500.html"));
 });
-
-// const admin = new Emp({
-//   empFullName: "rana ",
-//   email: "test5",
-//   empUsername: "adminrana",
-//   password:"1234567" ,
-//   empPhone: "0987654321",
-//  admin: true
-// });
-// admin.save(function (err, useradmin) {
-//   if (err) return console.error(err);
-//   console.log(useradmin.empFullName + " saved to emp collection.");
-// });
 
 console.log("===== HERE WE END =====");
 const PROT = process.env.PROT || 5000;

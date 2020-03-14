@@ -35,12 +35,18 @@ const EmpSchema = mongoose.Schema({
       maxlength: [10,'Pease inter correct phone number'],
       required: [true, 'Emp phone number required']
     },
-    Tickets: [
+    sendTickets: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Tickets'
+        ref: 'sendTickets'
       }
     ]  ,
+    receivedTickets: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'receivedTickets'
+      }
+    ] ,
     admin:{
       type:Boolean ,default:false
     }

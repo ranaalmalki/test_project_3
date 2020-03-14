@@ -1,21 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-// const passport = require('../config/passport');
 const jwt = require('jsonwebtoken');
 const Emp = require('../models/Emp');
 const config = require('../config/bd');
-const Ticket = require('../models/Ticket');
+
 
 
 router.post('/register', (req, res) => {
-    const { empFullName, empUsername, email, password, empPhone } = req.body;
+    const { empFullName, empUsername, email, password, empPhone,admin } = req.body;
     const emp = {}
     emp.empFullName = empFullName,
         emp.empUsername = empUsername,
         emp.email = email + '@enjaz.com',
         emp.empPhone = empPhone,
-        emp.password = password
+        emp.password = password,
+        emp.admin = admin
     let newEmp = new Emp(emp)
 
     Emp.addUser(newEmp, (err, emp) => {
@@ -36,37 +36,40 @@ router.post('/register', (req, res) => {
     });
 });
 
-router.post('/login', (req, res) => {
+
+
+
+router.post('/login', (req, res, next) => {
     const empUsername = req.body.empUsername;
     const password = req.body.password;
 
-    Emp.getUserByUsername(empUsername, (err, emp) => {
+    Emp.getUserByUsername(empUsername, (err, user) => {
         if (err) throw err;
-        if (!emp) {
+        if (!user) {
             return res.json({
                 success: false,
                 message: "Emp not found."
             });
         }
 
-        Emp.comparePassword(password, emp.password, (err, isMatch) => {
+        Emp.comparePassword(password, user.password, (err, isMatch) => {
             if (err) throw err;
             if (isMatch) {
                 const token = jwt.sign({
-                    type: "emp",
+                    type: "user",
                     data: {
-                        _id: emp._id,
-                        empUsername: emp.empUsername,
-                        empFullName: emp.empFullName,
-                        email: emp.email,
-                        empPhone: emp.empPhone
+                        _id: user._id,
+                        empUsername: user.empUsername,
+                        empFullName: user.empFullName,
+                        email: user.email,
+                        empPhone: user.empPhone
                     }
                 }, config.secret, {
-                    expiresIn: 604800 // for 1 week time in milliseconds
+                    expiresIn: 36000000 // for 1 week time in milliseconds
                 });
                 return res.json({
                     success: true,
-                    token: "JWT " + token
+                    token: "jwt " + token
                 });
             } else {
                 return res.json({
@@ -79,15 +82,17 @@ router.post('/login', (req, res) => {
 });
 
 /**
- * Get Authenticated emp profile
+ * Get Authenticated user profile
  */
 
-router.get('/profile', passport.authenticate('jwt', {
-    session: false
-}), (req, res) => {
-    return res.json(
-        req.emp
-    );
-});
+// router.get('/profile', passport.authenticate('jwt', {
+//     session: false
+// }), (req, res) => {
+//     // console.log(req.user);
+//     return res.json(
+//         req.emps
+//     );
+// });
+
 
 module.exports = router;
