@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+// const passport = require('../config/passport');
 const jwt = require('jsonwebtoken');
 const Emp = require('../models/Emp');
 const config = require('../config/bd');
 const Trans = require('../models/Ticket');
-
 
 
 router.post('/register', (req, res) => {
