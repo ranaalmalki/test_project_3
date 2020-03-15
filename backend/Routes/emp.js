@@ -62,7 +62,7 @@ router.post('/login', (req, res, next) => {
                         empUsername: user.empUsername,
                         empFullName: user.empFullName,
                         email: user.email,
-                        empPhone: user.empPhone,
+                        empPhone: user.empPhone
                     }
                 }, process.env.JWT_KEY, {
                     expiresIn: 36000000 // for 1 week time in milliseconds
