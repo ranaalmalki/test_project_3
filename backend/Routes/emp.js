@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+// const passport = require('../config/passport');
 const jwt = require('jsonwebtoken');
 const Emp = require('../models/Emp');
-const config = require('../config/bd');
-
+require("dotenv").config();
 
 
 router.post('/register', (req, res) => {
@@ -62,11 +62,12 @@ router.post('/login', (req, res, next) => {
                         empUsername: user.empUsername,
                         empFullName: user.empFullName,
                         email: user.email,
-                        empPhone: user.empPhone
+                        empPhone: user.empPhone,
                     }
-                }, config.secret, {
+                }, process.env.JWT_KEY, {
                     expiresIn: 36000000 // for 1 week time in milliseconds
                 });
+                console.log(token);
                 return res.json({
                     success: true,
                     token: "jwt " + token

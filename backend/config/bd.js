@@ -1,10 +1,10 @@
+
 // Creating a base name for the MongoDB
 const mongooseBaseName = 'prtest';
 
 // Create the MongoDB URI for Development and Test
 const database = {
   development: `mongodb://localhost/${mongooseBaseName}-development`,
-  secret: 'your-secret',
   test: `mongodb://localhost/${mongooseBaseName}-test`,
 }
 
