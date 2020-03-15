@@ -1,20 +1,39 @@
 import React from 'react';
 import Transaction from './component/transaction/transaction'
-import Register from './component/Register';
-import LogIn from './component/LogIn'
-import HomePage from './component/home_page/HomePage';
+import Register from './component/Login/Register';
+import LogIn from './component/Login/LogIn'
+import Tickets from './component/Tickets/Tickets'
 import './App.css';
-import './component/home_page/HomePage.css';
 
-function App() {
+import apiURL from'./APIconfig';
+
+export default class App extends React.Component {
+
+  constructor(props){
+    super(props)
+    
+    this.state = {
+      Tickets:[], 
+    };
+    console.log('MY API :  ',apiURL);
+    
+  }
+
+  setTickets = (Tickets) =>{
+    this.setState( {Tickets} );
+  }
+
+
+  render(){
   return (
     <div>
-      <Transaction />
+      <p> Welcome :) ! </p>
+      <Tickets 
+      Tickets={this.state.Tickets} 
+      setTickets={this.setTickets} />
+      {/* <Transaction /> */}
       {/* <Register/> */}
       {/* <LogIn /> */}
-      {/* <HomePage/> */}
     </div>
   );
-}
-
-export default App;
+}}
