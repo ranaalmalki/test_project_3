@@ -52,7 +52,7 @@ router.patch('/PassTicket/:TicketId', (req, res) => {
     try {
       await foundTicket.TicketsEmp.push(req.body.TicketsEmp);
     } catch (error) {
-
+      res.status(404).json(error);
     }
     Emp.findById(req.body.TicketsEmp, async (error, foundEmp) => {
       try {
@@ -61,7 +61,7 @@ router.patch('/PassTicket/:TicketId', (req, res) => {
         foundEmp.save()
         res.status(200).json(foundTicket.TicketsEmp);
       } catch (error) {
-
+        res.status(404).json(error);
       }
     })
 
@@ -81,12 +81,33 @@ router.patch('/UpdateTicket/:TicketId', (req, res) => {
       res.status(200).json(req.body);
 
     } catch (error) {
-
+      res.status(404).json(error);
     }
 
   });
 
 });
+
+
+router.delete('/DeleteTicket/:TicketId', (req, res) => {
+
+  Ticket.findById(req.params.TicketId, async (error, foundTicket) => {
+    try {
+      await foundTicket.remove();
+      res.status(200).json( `Ticket Id:  ${req.params.TicketId} has been deleted `);
+
+    } catch (error) {
+      res.status(404).json({ error:{
+        name: 'DocumentNotFound',
+        massage:'The provided ID dose not match any Document on Ticket'
+    } });
+    }
+
+  });
+
+});
+
+
 
 
 module.exports = router
