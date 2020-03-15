@@ -2,11 +2,11 @@ import apiURL from'../APIconfig';
 import axios from 'axios';
 
 
-// Get All Articles
+// Get All Ticket
 const getAllTicket = () => {
    return axios.get(`${apiURL}/emp_ticket`);
 }
 
 
 
- export { getAllArticles };
+ export { getAllTicket };
