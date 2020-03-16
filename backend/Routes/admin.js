@@ -11,16 +11,16 @@ require("dotenv").config();
 
 router.post('/register', (req, res) => {
     const { empFullName, empUsername, email, password, empPhone,admin } = req.body;
-    const emp = {}
-    emp.empFullName = empFullName,
-        emp.empUsername = empUsername,
-        emp.email = email + '@enjaz.com',
-        emp.empPhone = empPhone,
-        emp.password = password,
-        emp.admin = admin
-    let newEmp = new Emp(emp)
+    const admins = {}
+    admins.empFullName = empFullName,
+        admins.empUsername = empUsername,
+        admins.email = email + '@enjaz.com',
+        admins.empPhone = empPhone,
+        admins.password = password,
+        admins.admin = admin === true
+    let newAdmin = new Emp(admins)
 
-    Emp.addUser(newEmp, (err, emp) => {
+    Emp.addUser(newAdmin, (err, admins) => {
         if (err) {
             let message = "";
             if (err.errors.empUsername) message = "empUsername is already exist. ";
@@ -44,28 +44,29 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res, next) => {
     const empUsername = req.body.empUsername;
     const password = req.body.password;
-    const admin = req.body.admin
+    const admin = req.body.admin;
 
-    Emp.getUserByUsername(empUsername,admin, (err, emp) => {
+    Emp.getAdminByUsername(empUsername,admin, (err, admins) => {
         if (err) throw err;
-        if (!emp) {
+        if (!admins) {
             return res.json({
                 success: false,
                 message: "Emp not found."
             });
         }
 
-        Emp.comparePassword(password, emp.password, (err, isMatch) => {
+        Emp.comparePassword(password, admins.password, (err, isMatch) => {
             if (err) throw err;
             if (isMatch) {
                 const token = jwt.sign({
-                    type: "emp",
+                    type: "admin",
                     data: {
-                        _id: emp._id,
-                        empUsername: emp.empUsername,
-                        empFullName: emp.empFullName,
-                        email: emp.email,
-                        empPhone: emp.empPhone
+                        _id: admins._id,
+                        empUsername: admins.empUsername,
+                        empFullName: admins.empFullName,
+                        email: admins.email,
+                        empPhone: admins.empPhone,
+                        admin: admins.admin === true
                     }
                 }, config.database.secret, {
                     expiresIn: 36000000 // for 1 week time in milliseconds
@@ -88,24 +89,18 @@ router.post('/login', (req, res, next) => {
 /**
  * Get Authenticated user profile
  */
-router.post('/profile', passport.authenticate('jwt', { session: false }),
-    (req, res) =>{
-        res.send(req.user);
-    }
-);
+
 
 router.get('/profile', passport.authenticate('jwt', {
     session: false
 }), (req, res) => {
-    console.log(`emp login success ${req.user}`);
+    console.log(`admin login success ${req.user}`);
     return res.json(
         req.user
     );
 }
 
 );
-
-  
 
 
 module.exports = router;

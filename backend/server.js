@@ -6,6 +6,7 @@ const empRoute = require("./Routes/emp");
 const cors = require("cors");
 const passport = require("passport");
 const path = require("path");
+const adminRoute =require('./Routes/admin');
 
 const Emp = require("./models/Emp");
 const transactionRoute = require("./Routes/ticket");
@@ -21,14 +22,28 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use("/emp", empRoute);
-app.use("/emp", transactionRoute);
+
 
 app.use((req, res, next) => {
   console.log(`${new Date().toString()} => ${req.originalUrl}`, req.body);
   next();
 });
 
+
+
+const checkUserType = function (req, res, next) {
+  const userType = req.originalUrl.split('/')[2];
+  console.log(userType)
+  // Bring in the passport authentication
+  require('./config/passport')(userType, passport);
+  next();
+};
+
+app.use(checkUserType);
+
+app.use("/api/emp", empRoute);
+app.use("/api/admin", adminRoute);
+app.use("/emp", transactionRoute);
 // Handler for 404 - Resource Not Found
 app.use((req, res, next) => {
   res.status(404).send("We think you are lost!");

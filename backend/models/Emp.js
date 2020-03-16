@@ -60,13 +60,21 @@ module.exports.getUserById = (id, callback) => {
 };
 
 // Find the user by Its username
-module.exports.getUserByUsername = (empUsername, callback) => {
+module.exports.getUserByUsername = (empUsername,admin, callback) => {
   const query = {
-    empUsername: empUsername
+    empUsername: empUsername,
+    admin: admin === false
   };
   Emp.findOne(query, callback);
 };
 
+module.exports.getAdminByUsername = (empUsername,admin, callback) => {
+  const query = {
+    empUsername: empUsername,
+    admin: admin === true
+  };
+  Emp.findOne(query, callback);
+};
 // to Register the user
 module.exports.addUser = (newEmp, callback) => {
   bcrypt.genSalt(10, (err, salt) => {
