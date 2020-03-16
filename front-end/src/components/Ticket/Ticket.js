@@ -1,11 +1,6 @@
 //Ticket
 import React from 'react';
 
-       {/* <h4> Type:  {this.props.TicketType} </h4>
-        <sub> State:  {this.props.TicketState} </sub>
-        <p> Description:  {this.props.TicketDescription} </p>
-        -------------------------------------- */}
-
 export default class Ticket extends React.Component{
 
   constructor(props){
@@ -15,8 +10,8 @@ export default class Ticket extends React.Component{
       Fltir:'none', 
     };
   }
-  // To display or not the Ticket Description  
-  TicketClicked = (e) => {
+  // To display or not the ticket description  
+  TicketClicked = () => {
      if( this.state.Fltir === 'none'){
         this.setState({ 
           Fltir:'display', }); 
@@ -32,7 +27,6 @@ export default class Ticket extends React.Component{
         <h1
         onClick={this.TicketClicked}>
           {this.props.TicketState} <span class="shots-number"> {this.props.TicketType} </span>
-        {/* <span class="shots-number">{this.props.TicketType}</span> */}
         </h1>
         <h2 className={`DescriptionFltir-${this.state.Fltir}`}>
           {this.props.TicketDescription}</h2>
