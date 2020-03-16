@@ -1,6 +1,6 @@
 import React from 'react';
 import apiURL from'./APIconfig';
-
+import '../src/components/Ticket/Tickets.css';
 
 // Components
 import Tickets from './components/Ticket/Tickets'
@@ -24,7 +24,7 @@ export default class App extends React.Component {
   render(){
     return (
       <div>
-        <p> Welcome :) ! </p>
+        {/* <p> Welcome :) ! </p> */}
        <Tickets 
         Tickets={this.state.Tickets} 
         setTickets={this.setTickets}/>
