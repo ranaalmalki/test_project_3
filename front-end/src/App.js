@@ -2,8 +2,8 @@ import React from 'react';
 import apiURL from'./APIconfig';
 
 
-// Import
-import Tickets from './components/Ticket'
+// Components
+import Tickets from './components/Ticket/Tickets'
 export default class App extends React.Component {
 
   constructor(props){
