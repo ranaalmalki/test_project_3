@@ -34,10 +34,12 @@ export default class Tickets extends React.Component{
       })}
 
     return(
-        <>
-        <h1> All Tickets.. </h1>
-        {allTickets}
-        </>);
+        <div className="content">
+            <h1>ALL Tickets</h1>
+        <ul className="timeline">
+            {allTickets}
+        </ul>
+        </div>);
   }
 
 } 
