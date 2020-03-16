@@ -1,7 +1,7 @@
 import React from 'react';
 import Transaction from './component/transaction/transaction'
-import Register from './component/Login/Register';
-import LogIn from './component/Login/LogIn'
+import Register from './component/login/Register';
+import LogIn from './component/login/LogIn'
 import Tickets from './component/Tickets/Tickets'
 import './App.css';
 
