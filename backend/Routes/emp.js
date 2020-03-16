@@ -88,11 +88,6 @@ router.post('/login', (req, res, next) => {
 /**
  * Get Authenticated user profile
  */
-router.post('/profile', passport.authenticate('jwt', { session: false }),
-    (req, res) =>{
-        res.send(req.user);
-    }
-);
 
 router.get('/profile', passport.authenticate('jwt', {
     session: false

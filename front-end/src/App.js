@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import './App.scss'
 import { Route } from 'react-router-dom'
 
-import AuthenticatedRoute from './auth/components/AuthenticatedRoute'
+import AuthenticatedRoute from './auth/component/AuthenticatedRoute'
 import Header from './header/Header'
-import SignUp from './auth/components/SignUp'
-import SignIn from './auth/components/SignIn'
-import SignOut from './auth/components/SignOut'
-import ChangePassword from './auth/components/ChangePassword'
-import AlertDismissible from './auth/components/AlertDismissible'
+import SignUp from './auth/component/SignUp'
+import SignIn from './auth/component/SignIn'
+import SignOut from './auth/component/SignOut'
+import ChangePassword from './auth/component/ChangePassword'
+import AlertDismissible from './auth/component/AlertDismissible'
 
 class App extends Component {
   constructor () {
