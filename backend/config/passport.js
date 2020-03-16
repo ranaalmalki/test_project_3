@@ -32,10 +32,6 @@ module.exports = (userType, passport) => {
             });
         }
         console.log('other wise');
-        // return done(err, false)        // else(err, user)=>{
-        //     if (err) return done(err, false);
-        //     if (user) return done(err, user);
-        //     return done(null, false);
-        // }
+   
     }));
 }

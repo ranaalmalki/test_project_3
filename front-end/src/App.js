@@ -1,39 +1,59 @@
-import React from 'react';
-import Transaction from './component/transaction/transaction'
-import Register from './component/login/Register';
-import LogIn from './component/login/LogIn'
-import Tickets from './component/Tickets/Tickets'
-import './App.css';
+import React, { Component } from 'react'
+import './App.scss'
+import { Route } from 'react-router-dom'
 
-import apiURL from'./APIconfig';
+import AuthenticatedRoute from './auth/component/AuthenticatedRoute'
+import Header from './header/Header'
+import SignUp from './auth/component/SignUp'
+import SignIn from './auth/component/SignIn'
+import SignOut from './auth/component/SignOut'
+import ChangePassword from './auth/component/ChangePassword'
+import AlertDismissible from './auth/component/AlertDismissible'
 
-export default class App extends React.Component {
+class App extends Component {
+  constructor () {
+    super()
 
-  constructor(props){
-    super(props)
-    
     this.state = {
-      Tickets:[], 
-    };
-    console.log('MY API :  ',apiURL);
-    
+      user: null,
+      alerts: []
+    }
   }
 
-  setTickets = (Tickets) =>{
-    this.setState( {Tickets} );
+  setUser = user => this.setState({ user })
+
+  clearUser = () => this.setState({ user: null })
+
+  alert = (message, type) => {
+    this.setState({ alerts: [...this.state.alerts, { message, type }] })
   }
 
+  render () {
+    const { alerts, user } = this.state
 
-  render(){
-  return (
-    <div>
-      <p> Welcome :) ! </p>
-      <Tickets 
-      Tickets={this.state.Tickets} 
-      setTickets={this.setTickets} />
-      {/* <Transaction /> */}
-      {/* <Register/> */}
-      {/* <LogIn /> */}
-    </div>
-  );
-}}
+    return (
+      <React.Fragment>
+        <Header user={user} />
+        {alerts.map((alert, index) => (
+          <AlertDismissible key={index} variant={alert.type} message={alert.message} />
+        ))}
+        <main className="container">
+          <Route path='/sign-up' render={() => (
+            <SignUp alert={this.alert} setUser={this.setUser} />
+          )} />
+          <Route path='/sign-in' render={() => (
+            <SignIn alert={this.alert} setUser={this.setUser} />
+          )} />
+          <AuthenticatedRoute user={user} path='/sign-out' render={() => (
+            <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/change-password' render={() => (
+            <ChangePassword alert={this.alert} user={user} />
+          )} />
+        </main>
+      </React.Fragment>
+    )
+  }
+}
+
+export default App
