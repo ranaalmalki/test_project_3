@@ -2,7 +2,7 @@ import React from 'react';
 import apiURL from'./APIconfig';
 
 
-// Import
+// Components
 import Tickets from './components/Ticket/Tickets'
 export default class App extends React.Component {
 
