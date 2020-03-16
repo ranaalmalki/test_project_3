@@ -3,7 +3,7 @@ import apiURL from'./APIconfig';
 
 
 // Import
-import Tickets from './components/Ticket'
+import Tickets from './components/Ticket/Tickets'
 export default class App extends React.Component {
 
   constructor(props){

@@ -7,7 +7,7 @@ export default class Ticket extends React.Component{
   render(){
     return(
     <div>
-        <sub> Type:  {this.props.TicketType} </sub>
+        <h4> Type:  {this.props.TicketType} </h4>
         <sub> State:  {this.props.TicketState} </sub>
         <p> Description:  {this.props.TicketDescription} </p>
         --------------------------------------
