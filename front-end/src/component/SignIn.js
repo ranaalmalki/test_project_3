@@ -35,7 +35,7 @@ class SignIn extends Component {
   }
 
   render () {
-    const { email, password } = this.state
+    const { empUsername, password } = this.state
 
     return (
       <form className='auth-form' onSubmit={this.onSignIn}>
@@ -45,7 +45,7 @@ class SignIn extends Component {
           required
           type="email"
           name="email"
-          value={email}
+          value={empUsername}
           placeholder="Email"
           onChange={this.handleChange}
         />
