@@ -1,5 +1,8 @@
 import React from 'react';
 import apiURL from'./APIconfig';
+import NewEmployee from './components/manager/NewEmployee';
+import Manager from './components/manager/Manager';
+
 
 //CSS
 import '../src/components/Ticket/Tickets.css'; 
@@ -19,7 +22,7 @@ export default class App extends React.Component {
       Tickets:[], 
     };
     console.log('MY API :  ',apiURL);
-
+    
   }
 
   setTickets = (Tickets) =>{
@@ -30,12 +33,18 @@ export default class App extends React.Component {
   render(){
     return (
       <div>
+      manger
+        <p> Welcome :) ! </p>
+       {/* <Tickets 
+
 
     
         <Login/>
        <Tickets 
         Tickets={this.state.Tickets} 
-        setTickets={this.setTickets}/>
+        setTickets={this.setTickets}/> */}
+        {/* <NewEmployee /> */}
+        <Manager/>
       </div>
     );
   }
