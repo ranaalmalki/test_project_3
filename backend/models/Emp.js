@@ -60,18 +60,16 @@ module.exports.getUserById = (id, callback) => {
 };
 
 // Find the user by Its username
-module.exports.getUserByUsername = (empUsername,admin, callback) => {
+module.exports.getUserByUsername = (empUsername, callback) => {
   const query = {
     empUsername: empUsername,
-    admin: admin === false
   };
   Emp.findOne(query, callback);
 };
 
-module.exports.getAdminByUsername = (empUsername,admin, callback) => {
+module.exports.getAdminByUsername = (empUsername, callback) => {
   const query = {
     empUsername: empUsername,
-    admin: admin === true
   };
   Emp.findOne(query, callback);
 };

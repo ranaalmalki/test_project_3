@@ -43,7 +43,7 @@ app.use(checkUserType);
 
 app.use("/api/emp", empRoute);
 app.use("/api/admin", adminRoute);
-app.use("/emp", transactionRoute);
+app.use("/api", transactionRoute);
 // Handler for 404 - Resource Not Found
 app.use((req, res, next) => {
   res.status(404).send("We think you are lost!");

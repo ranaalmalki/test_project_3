@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 
 const Emp = require('../models/Emp');
 const Ticket = require('../models/Ticket');
@@ -32,18 +33,31 @@ router.post('/:empId', (req, res) => {
 
 
 //-------------Get all tickets-------------------
-router.get('/emp_ticket', (req, res) => {
+router.get('/admin/allTickets', passport.authenticate('jwt', {session: false}), (req, res) => {
   Ticket.find({})
-    .populate('TicketsEmp')
-    .exec((err, Emp) => {
-      if (err) {
-        res.status(500).send(err);
-        return;
-      }
-      console.log(`found and populated all : ${Emp}`);
-      res.json(Emp);
-    });
+  .populate('TicketsEmp')
+  .exec((err, Emp) => {
+    if (err) {
+      res.status(500).send(err);
+      return;
+    }
+    console.log(`emp login success ${req.user}`);
+    console.log(`found and populated all : ${Emp}`);
+    res.json(Emp);
+  });
 });
+// router.get('/emp_ticket', (req, res) => {
+//   Ticket.find({})
+//     .populate('TicketsEmp')
+//     .exec((err, Emp) => {
+//       if (err) {
+//         res.status(500).send(err);
+//         return;
+//       }
+//       console.log(`found and populated all : ${Emp}`);
+//       res.json(Emp);
+//     });
+// });
 
 //-------------Pass ticket to another Emp-------------------
 router.patch('/PassTicket/:TicketId', (req, res) => {
