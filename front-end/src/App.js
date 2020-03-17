@@ -9,7 +9,7 @@ import '../src/components/Ticket/Tickets.css';
 
 // Components
 import Tickets from './components/Ticket/Tickets'
-import Login from './components/login/LogIn'
+import Login from './components/login/Login'
 
 
 
@@ -33,10 +33,7 @@ export default class App extends React.Component {
   render(){
     return (
       <div>
-      manger
 
-        <p> Welcome :) ! </p>
-       {/* <Tickets 
 
 
 
