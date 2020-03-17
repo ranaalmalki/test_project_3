@@ -44,9 +44,8 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res, next) => {
     const empUsername = req.body.empUsername;
     const password = req.body.password;
-    const admin = req.body.admin;
 
-    Emp.getAdminByUsername(empUsername,admin, (err, admins) => {
+    Emp.getAdminByUsername(empUsername, (err, admins) => {
         if (err) throw err;
         if (!admins) {
             return res.json({
