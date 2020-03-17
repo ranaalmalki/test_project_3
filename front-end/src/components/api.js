@@ -8,7 +8,7 @@ export const getAllTicket = () => {
 }
 
 
-//register new Employee
+//Add new Employee
 export const AddNewEmployee = req => {
    return axios({
      method: 'POST',
@@ -23,4 +23,30 @@ export const AddNewEmployee = req => {
      
    })
  }
+//Add new Tickect 
+ export const AddNewTicket = (req ,id) => {
+  return axios({
+    method: 'POST',
+    url: apiURL + `/api/${id}`,
+    data:{
+      TicketType:req.TicketType,
+      TicketDescription: req.TicketDescription,
+      TicketState: req.TicketState,
+    }
+    
+  })
+}
 
+//Update Ticket 
+export const EditeTicket = (req,id) => {
+  return axios({
+    method: 'patch',
+    url: apiURL + `/api/UpdateTicket/${id}`,
+    data:{
+      TicketType:req.TicketType,
+      TicketDescription: req.TicketDescription,
+      TicketState: req.TicketState,
+    }
+    
+  })
+}
