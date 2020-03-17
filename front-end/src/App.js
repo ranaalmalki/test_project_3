@@ -1,5 +1,6 @@
 import React from 'react';
 import apiURL from'./APIconfig';
+import Login from './components/login/Login'
 
 
 // Components
@@ -25,9 +26,10 @@ export default class App extends React.Component {
     return (
       <div>
         <p> Welcome :) ! </p>
-       <Tickets 
+<Login/>
+       {/* <Tickets 
         Tickets={this.state.Tickets} 
-        setTickets={this.setTickets}/>
+        setTickets={this.setTickets}/> */}
       </div>
     );
   }
