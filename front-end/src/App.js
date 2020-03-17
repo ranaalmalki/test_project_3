@@ -1,6 +1,5 @@
 import React from 'react';
 import apiURL from'./APIconfig';
-import Login from './components/login/Login'
 
 //CSS
 import '../src/components/Ticket/Tickets.css'; 
@@ -31,14 +30,12 @@ export default class App extends React.Component {
   render(){
     return (
       <div>
-        <p> Welcome :) ! </p>
-        {/* <Login/> */}
-       <Tickets 
-<Login/>
-       {/* <Tickets 
 
+    
+        <Login/>
+       <Tickets 
         Tickets={this.state.Tickets} 
-        setTickets={this.setTickets}/> */}
+        setTickets={this.setTickets}/>
       </div>
     );
   }
