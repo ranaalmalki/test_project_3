@@ -41,7 +41,7 @@ router.post('/register', (req, res) => {
 
 
 
-router.post('/login', (req, res, next) => {
+router.post('/login', (req, res) => {
     const empUsername = req.body.empUsername;
     const password = req.body.password;
 
