@@ -31,6 +31,13 @@ module.exports = (userType, passport) => {
                 return done(null, false);
             });
         }
+        if (userType == 'admin' && jwt_payload.data.admin === false) {
+
+            console.log('I am ADMIN but I go to EMP route');
+            return done(null, {m:'ggggg'});    
+
+            
+        }
         console.log('other wise');
    
     }));
