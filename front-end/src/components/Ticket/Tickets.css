@@ -11,24 +11,22 @@
 }
 
 body {
-  background: #b1b4b3;
+  background: #e3e4e3;
   font-family: 'Raleway', sans-serif;
 }
 
-span,
-h1,
-h2,
-h3,
+
 span {
   text-decoration: none;
-  color: #999;
+  color: black;
+  font-size: .4em;
 }
 
 
 h1 {
   font-family: 'Raleway', sans-serif;
   letter-spacing: 1.5px;
-  color: #777;
+  color: lightblue;
   font-weight: 100;
   font-size: 2.4em;
   margin: 0;
@@ -39,9 +37,10 @@ h1 {
 h2 {
   font-family: 'Raleway', sans-serif;
   letter-spacing: 1.5px;
-  color: #999;
+  border-bottom: 1px solid #999;
+  color: black;
   font-weight: 100;
-  font-size: 1.0em;
+  font-size: 2.4em;
 }
 
 .content {
