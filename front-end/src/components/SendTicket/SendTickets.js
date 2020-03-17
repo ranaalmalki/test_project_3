@@ -48,8 +48,8 @@ export default class SendTickets extends React.Component{
 
     return(
         <div className="content">
-            <h1>Your Tickets</h1>
-        <ul className="TimeLine">
+            <h2>Your Tickets</h2>
+        <ul className="TimeLineSendTickets">
             {allTickets}
         </ul>
         </div>);
