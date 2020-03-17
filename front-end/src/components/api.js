@@ -50,3 +50,9 @@ export const EditeTicket = (req,id) => {
     
   })
 }
+
+
+// Get ALl Emp SendTickets By Emp ID
+export const getEmpSendTickets = (id) => {
+  return axios.get(`${apiURL}/api/emp/SendTickets/${id}`);
+} 
