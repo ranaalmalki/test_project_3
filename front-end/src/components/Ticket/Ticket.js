@@ -17,13 +17,20 @@ export default class Ticket extends React.Component{
          this.setState({ Fltir:'none' }); 
      }
 }
+// To  
+closeClick = (e) => {
+  e.preventDefault();
+  this.props.closeOneTicket(this.props.id);
+}
   render(){
     return(
       <li className="event">
       <div className="member-infos">
         <h1
         onClick={this.TicketClicked}>
-          {this.props.TicketState} <span  class="shots-number"> <button className="raise"> Close </button> </span>
+          {this.props.TicketState} <span  class="shots-number"> 
+          <button className="raise"
+          onClick={this.closeClick}> Close </button> </span>
         </h1>
         <div className={`DescriptionFltir-${this.state.Fltir}`}>
           <span>{this.props.TicketType}</span>

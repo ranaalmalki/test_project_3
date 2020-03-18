@@ -2,9 +2,29 @@
 import React from 'react'
 import './header.css';
 import Tickets from '../Ticket/Tickets'
-
-
+import { getAllTicket } from '../api';
 export default class AdminHeader extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {
+    history:null,
+    };
+  }
+componentDidMount(){
+    // Mack API call 
+    getAllTicket()
+    .then( (reponse)=>{
+        console.log('reponse.data' , reponse.data )
+        const history = reponse.data.filter((Ticket) => {
+            if(Ticket.TicketState === 'closed'){
+                return reponse.data
+            }
+          });this.setState( {history} );
+    })
+    .catch( (error)=>{
+        console.log(' API error: ',error );
+    })
+}
     render(){
     return (
 <div className="page">
@@ -32,4 +52,3 @@ export default class AdminHeader extends React.Component{
 </div>
     )}
 }
-

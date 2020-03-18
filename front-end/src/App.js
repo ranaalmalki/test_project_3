@@ -20,7 +20,6 @@ export default class App extends React.Component {
     <AuthComponent>
       <Route path={'/EmpHeader'} component={EmpHeader}/>
       <Route path={'/AdminHeader'} component={AdminHeader}/>
-
       </AuthComponent>
         </Switch>
       </BrowserRouter>

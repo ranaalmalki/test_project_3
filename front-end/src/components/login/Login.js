@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { BehaviorSubject } from 'rxjs';
 import jwt_decode from 'jwt-decode';
+import { getInfo } from './decodeToken';
 
 
 import './login.css';
 
 
-// const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -15,8 +15,7 @@ class Login extends Component {
     this.state = {
       empUsername: '',
       password: '',
-      // currentUser: currentUserSubject.asObservable(),
-      // get currentUserValue () { return currentUserSubject.value }
+  
 
     };
 
@@ -33,13 +32,24 @@ class Login extends Component {
   submit(e) {
     e.preventDefault();
 
-    axios.post('http://localhost:5000/api/admin/login',{
+    axios.post('http://localhost:5000/api/emp/login',{
       empUsername: this.state.empUsername,
       password: this.state.password
     }).then(res => {
       console.warn("res", res)
       localStorage.setItem('currentUser', res.data.token)
-      this.props.history.push('/EmpHeader');
+      let jwt1 = getInfo()
+
+      if(jwt1.data.admin === true){
+        console.log('a:',jwt1)
+        this.props.push('/AdminHeader')
+       }else if(jwt1.data.admin === false){
+        this.props.push('/EmpHeader')
+        }else if(jwt1 === undefined){
+          console.log('b: ',jwt1)
+         this.props.push('/Login')
+    }
+      
       return res;
     })
     .catch(error => {
@@ -51,8 +61,7 @@ class Login extends Component {
 
   render() {
 
-   let a = localStorage.getItem('currentUser')
-   if(a !== null) { console.log(jwt_decode(a))}
+
    
     return (
     

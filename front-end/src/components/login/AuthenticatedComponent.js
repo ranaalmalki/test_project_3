@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { getJwt } from './helper';
+import { getInfo } from './decodeToken';
+
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import apiURL from'../../APIconfig';
+import jwt_decode from 'jwt-decode';
 
 
 class AuthenticatedComponent extends Component {
@@ -10,25 +13,34 @@ class AuthenticatedComponent extends Component {
     super(props);
 
     this.state = {
-      user: undefined
+      admin: undefined,
+      user:  undefined
     };
   }
 
-  componentDidMount() {
-    const jwt = getJwt();
-    console.log(jwt)
-    if (!jwt) {
-    console.log('no jwt')
+componentDidMount() {
+  const jwt = getJwt();
+  console.log(jwt)
+  let jwt1 = getInfo()
+  if (!jwt) {
+  console.log('no jwt')
+  this.props.history.push('/Login')
+   
+  }else if(jwt1.data.admin === true){
+    this.setState({
+      admin: jwt
+    })
+  }else if(jwt1.data.admin === false){
+  this.setState({
+    user: jwt
+  })
+ }else{
+  this.props.push('/Login')
+}
+}
 
-      this.props.history.push('/Login');
-    }else{
-      this.setState({
-        user: jwt
-      })
-    }
 
-
-  }
+  
 
   render() {
     // if (this.state.user!==undefined) {
@@ -39,8 +51,9 @@ class AuthenticatedComponent extends Component {
 console.log("children :",this.props.children)
     return (
       <div>
-        emp heder
-        {this.props.children}
+
+        { this.state.admin != undefined ? this.props.children[0] : this.props.children[1]}
+
       </div>
     );
   }
