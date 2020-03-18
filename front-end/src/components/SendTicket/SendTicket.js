@@ -27,10 +27,14 @@ export default class SendTicket extends React.Component{
             <h1 onClick={this.TicketClicked}>
                 {this.props.TicketState}
                 <span className="shots-number"> 
-                {this.props.TicketType} </span>
+                _{this.props.TicketType} </span>
            </h1>
-            <p className={`Description-${this.state.Fltir}`}>
-                {this.props.TicketDescription}</p>
+           <div className={`Description-${this.state.Fltir}`}>
+      <p>
+          {this.props.TicketDescription}</p>
+        <button className="raise"> Edit </button>  
+      </div>
+
         </div>
     //   <li className="event">
     //   <div className="member-infos">

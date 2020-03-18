@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+body{
+  background: #e3e4e3;
+
+}
+
+
+.container{
+  position: fixed;
+  right: 5%;
+  margin-top: 10vh;
+  /* margin: 0 auto; */
+  width: 90%;
+  height: 80%;
+  box-shadow: 10px 10px 5px rgb(134, 126, 126) ;
+  background-color:transparent;
+  display: grid;
+  grid-template-columns: auto auto ;
+  overflow: scroll;
+  grid-column-gap: 15px;
+  grid-row-gap: 10px;
+}  
