@@ -11,7 +11,7 @@ router.post('/:empId', (req, res) => {
   ticket.TicketType = TicketType,
     ticket.TicketDescription = TicketDescription,
     ticket.TicketState = TicketState,
-    ticket.TicketsEmp = req.params.empId
+    ticket.sendTickets = req.params.empId
   const savedTicket = new Ticket(ticket)
   savedTicket.save()
   // find emp in db by id and add new ticket
@@ -27,7 +27,7 @@ router.post('/:empId', (req, res) => {
   });
 });
 //-------------Get all tickets-------------------
-router.get('/admin/allTickets', passport.authenticate('jwt', {session: false}), (req, res) => {
+router.get('/admin/allTickets', (req, res) => {
   Ticket.find({})
   .populate('TicketsEmp')
   .exec((err, Emp) => {

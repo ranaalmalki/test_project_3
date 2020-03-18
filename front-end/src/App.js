@@ -16,9 +16,11 @@ export default class App extends React.Component {
       <BrowserRouter>
      <Switch>
 
-      <Route path={'/login'} component={Login}/>
+      <Route path={'/login'} component={Login}/>   
     <AuthComponent>
+      <Route path={'/EmpHeader'} component={EmpHeader}/>
       <Route path={'/AdminHeader'} component={AdminHeader}/>
+
       </AuthComponent>
         </Switch>
       </BrowserRouter>

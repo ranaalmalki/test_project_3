@@ -7,7 +7,7 @@ import jwt_decode from 'jwt-decode';
 import './login.css';
 
 
-const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
+// const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -15,8 +15,8 @@ class Login extends Component {
     this.state = {
       empUsername: '',
       password: '',
-      currentUser: currentUserSubject.asObservable(),
-      get currentUserValue () { return currentUserSubject.value }
+      // currentUser: currentUserSubject.asObservable(),
+      // get currentUserValue () { return currentUserSubject.value }
 
     };
 
@@ -39,7 +39,7 @@ class Login extends Component {
     }).then(res => {
       console.warn("res", res)
       localStorage.setItem('currentUser', res.data.token)
-      this.props.history.push('/AdminHeader');
+      this.props.history.push('/EmpHeader');
       return res;
     })
     .catch(error => {

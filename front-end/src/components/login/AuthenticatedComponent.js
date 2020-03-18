@@ -16,36 +16,30 @@ class AuthenticatedComponent extends Component {
 
   componentDidMount() {
     const jwt = getJwt();
+    console.log(jwt)
     if (!jwt) {
+    console.log('no jwt')
+
       this.props.history.push('/Login');
+    }else{
+      this.setState({
+        user: jwt
+      })
     }
 
-    this.setState({
-      user: jwt
-    })
-    // .catch(err => {
-    //   localStorage.removeItem('currentUser');
-    //   this.props.history.push('/AdminHeader');
-    // });
 
-  //   axios.get(`${apiURL}/emp/register`, { 
-  //     headers: { Authorization: `Bearer ${jwt}` } }).then(res => this.setState({
-  //     user: res.data
-  //   })).catch(err => {
-  //     localStorage.removeItem('currentUser');
-  //     this.props.history.push('/AdminHeader');
-  //   });
   }
 
   render() {
-    if (this.state.user === undefined) {
-      return (
-        <div><h1>Loading...</h1></div>
-      );
-    }
-
+    // if (this.state.user!==undefined) {
+    //   return (
+    //     <div><h1>Loading...</h1></div>
+    //   );
+    // }
+console.log("children :",this.props.children)
     return (
       <div>
+        emp heder
         {this.props.children}
       </div>
     );
