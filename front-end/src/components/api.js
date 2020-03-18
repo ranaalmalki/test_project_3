@@ -4,7 +4,7 @@ import axios from 'axios';
 
 // Get All Ticket
 export const getAllTicket = () => {
-  return axios.get(`${apiURL}/api/admin/allTickets`);
+  return axios.get(`${apiURL}/admin/allTickets`);
 }
 
 
@@ -12,7 +12,7 @@ export const getAllTicket = () => {
 export const AddNewEmployee = req => {
    return axios({
      method: 'POST',
-     url: apiURL + '/api/admin/register',
+     url: apiURL + '/admin/register',
      data:{
          empFullName:req.empFullName,
          email: req.email,
@@ -27,7 +27,7 @@ export const AddNewEmployee = req => {
  export const AddNewTicket = (req ,id) => {
   return axios({
     method: 'POST',
-    url: apiURL + `/api/${id}`,
+    url: apiURL + `/${id}`,
     data:{
       TicketType:req.TicketType,
       TicketDescription: req.TicketDescription,
@@ -41,7 +41,7 @@ export const AddNewEmployee = req => {
 export const EditeTicket = (req,id) => {
   return axios({
     method: 'patch',
-    url: apiURL + `/api/UpdateTicket/${id}`,
+    url: apiURL + `/UpdateTicket/${id}`,
     data:{
       TicketType:req.TicketType,
       TicketDescription: req.TicketDescription,
@@ -54,10 +54,10 @@ export const EditeTicket = (req,id) => {
 
 // Get ALl Emp SendTickets By Emp ID
 export const getEmpSendTickets = (id) => {
-  return axios.get(`${apiURL}/api/emp/SendTickets/${id}`);
+  return axios.get(`${apiURL}/emp/SendTickets/${id}`);
 } 
 
 // Get ALl Emp ReceivedTickets By Emp ID
 export const getreceivedTickets = (id) => {
-  return axios.get(`${apiURL}/api/emp/ReceivedTickets/${id}`);
+  return axios.get(`${apiURL}/emp/ReceivedTickets/${id}`);
 } 

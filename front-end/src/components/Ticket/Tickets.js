@@ -42,11 +42,14 @@ export default class Tickets extends React.Component{
         // <h1> All Tickets.. </h1>
         // {allTickets}
         // </>);
+        <>
         <div className="content">
             <h1>ALL Tickets</h1>
-        <ul className="timeline">
+        <ul className="all">
             {allTickets}
         </ul>
-        </div>);
+        </div>
+        </>
+        );
   }
 }

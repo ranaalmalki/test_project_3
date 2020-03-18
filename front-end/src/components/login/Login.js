@@ -3,7 +3,6 @@ import axios from 'axios';
 import { BehaviorSubject } from 'rxjs';
 import jwt_decode from 'jwt-decode';
 
-import {adminLogin} from '../api';
 
 import './login.css';
 
@@ -38,21 +37,20 @@ class Login extends Component {
       password: this.state.password
     }).then(res => {
       console.warn("res", res)
-      localStorage.setItem('my-jwt', res.data.token);
+      localStorage.setItem('currentUser', res.data.token)
+      this.props.history.push('/Tickets');
+      return res;
+    })
+    .catch(error => {
+      console.log("ERROR: ", error);
     });
-    
-  }
+};
 
-   et() {
-    const a = localStorage.getItem('my-jwt')
-  
-    var decoded = jwt_decode(a);
-    console.log(`this is my token : ${decoded}`)
-  }
+
 
   render() {
 
-   let a = localStorage.getItem('my-jwt')
+   let a = localStorage.getItem('currentUser')
    if(a !== null) { console.log(jwt_decode(a))}
    
     return (

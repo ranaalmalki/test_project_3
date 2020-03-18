@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { getJwt } from './helper';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import apiURL from'../../APIconfig';
+
 
 class AuthenticatedComponent extends Component {
   constructor(props) {
@@ -15,14 +17,14 @@ class AuthenticatedComponent extends Component {
   componentDidMount() {
     const jwt = getJwt();
     if (!jwt) {
-      this.props.history.push('http://localhost:5000/api/admin/Login');
+      this.props.history.push('/Login');
     }
 
-    axios.get('http://localhost:5000/api/admin/allTickets', { headers: { Authorization: `Bearer ${jwt}` } }).then(res => this.setState({
+    axios.get(`${apiURL}/emp/register`, { headers: { Authorization: `Bearer ${jwt}` } }).then(res => this.setState({
       user: res.data
     })).catch(err => {
-      localStorage.removeItem('my-jwt');
-      this.props.history.push('http://localhost:5000/api/admin/Login');
+      localStorage.removeItem('cool-jwt');
+      this.props.history.push('/NewEmployee');
     });
   }
 

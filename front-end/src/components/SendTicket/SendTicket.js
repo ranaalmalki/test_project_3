@@ -1,11 +1,8 @@
 // SendTicket
 import React from 'react';
-
 export default class SendTicket extends React.Component{
-
   constructor(props){
     super(props)
-
     this.state = {
       Fltir:'none', 
     };
@@ -22,28 +19,15 @@ export default class SendTicket extends React.Component{
 }
   render(){
     return(
-
         <div className="card">
             <h1 onClick={this.TicketClicked}>
                 {this.props.TicketState}
                 <span className="shots-number"> 
-                _{this.props.TicketType} </span>
+                {this.props.TicketType} </span>
            </h1>
-           <div className={`Description-${this.state.Fltir}`}>
-      <p>
-          {this.props.TicketDescription}</p>
-        <button className="raise"> Edit </button>  
-      </div>
-
+            <p className={`Description-${this.state.Fltir}`}>
+                {this.props.TicketDescription}</p>
         </div>
-    //   <li className="event">
-    //   <div className="member-infos">
-
-
-    //   </div>
-    //   </li>
-
     );
   }
-
 }
