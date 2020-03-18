@@ -35,8 +35,7 @@ componentDidMount() {
     user: jwt
   })
  }else{
-  this.props.push('/Login')
-}
+  this.props.history.push('/Login')}
 }
 
 

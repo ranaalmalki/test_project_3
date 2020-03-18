@@ -34,7 +34,7 @@ export const AddNewEmployee = req => {
       TicketState: req.TicketState,
     }
     
-  })
+  });
 }
 
 //Update Ticket 
@@ -50,7 +50,16 @@ export const UpdateTicket = (req,id) => {
     
   })
 }
-
+//close Ticket 
+export const closeTicket = (id) => {
+  return axios({
+    method: 'patch',
+    url: apiURL + `/UpdateTicket/${id}`,
+    data:{
+      TicketState: 'closed',
+    }
+  })
+}
 
 // Get ALl Emp SendTickets By Emp ID
 export const getEmpSendTickets = (id) => {

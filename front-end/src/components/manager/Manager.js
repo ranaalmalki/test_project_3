@@ -1,6 +1,8 @@
 import React from 'react';
 import {AddNewEmployee} from '../api';
 import NewEmployee from './NewEmployee';
+import { getInfo } from '../login/decodeToken';
+
 class Manager extends React.Component{
     constructor(){
         super();
@@ -9,8 +11,9 @@ class Manager extends React.Component{
     addEmployee = emp => {
         // Make an axios request
         console.log(emp,"Manager");
+        let mId = getInfo().data._id
 
-        AddNewEmployee(emp)
+        AddNewEmployee(emp,mId)
           .then(response => {
             console.log(
               `The Employee ${emp.empFullName} has been added successfully.`
