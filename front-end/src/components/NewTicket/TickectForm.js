@@ -50,7 +50,10 @@ class TicketForm extends React.Component {
               <option  value={this.props.TicketState}>On Progress</option>
         
             </select>
-        </div>
+            
+        </div><br/>
+        <a href="/AdminHeader"><i className="material-icons">arrow_back</i></a>
+
         <div className="submit-btn" onClick= {e=>this.props.formAdd(e)}>Add</div>
         </div>
 
