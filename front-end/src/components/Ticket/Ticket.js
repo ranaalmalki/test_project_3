@@ -23,11 +23,11 @@ export default class Ticket extends React.Component{
       <div className="member-infos">
         <h1
         onClick={this.TicketClicked}>
-          {this.props.TicketState} <span class="shots-number"> {this.props.TicketType} </span>
+          {this.props.TicketState} <span  class="shots-number"> <button className="raise"> Close </button> </span>
         </h1>
         <div className={`DescriptionFltir-${this.state.Fltir}`}>
+          <span>{this.props.TicketType}</span>
              <p>{this.props.TicketDescription}</p>
-             <button className="raise"> Close </button> 
              </div>
       </div>
       </li>

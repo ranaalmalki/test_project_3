@@ -1,17 +1,27 @@
 import React from 'react';
 import apiURL from'./APIconfig';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+
 // Components
 import Login from './components/login/Login'
-import AdminHeader from './components/Headers/AdminHeader'
-import EmpHeader from './components/Headers/EmpHeader'
+import AdminHeader from './components/Header/AdminHeader'
+import EmpHeader from './components/Header/EmpHeader'
+import AuthComponent from './components/login/AuthenticatedComponent';
+
 export default class App extends React.Component {
   render(){
     console.log('MY API :  ',apiURL);
     return (
       <>
-      <Login/>
-      
-      {/* <AdminHeader/> */}
+      <BrowserRouter>
+     <Switch>
+
+      <Route path={'/login'} component={Login}/>
+    <AuthComponent>
+      <Route path={'/AdminHeader'} component={AdminHeader}/>
+      </AuthComponent>
+        </Switch>
+      </BrowserRouter>
       {/* <EmpHeader/> */}
       </>
     );

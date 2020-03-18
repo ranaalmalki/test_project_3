@@ -20,12 +20,21 @@ class AuthenticatedComponent extends Component {
       this.props.history.push('/Login');
     }
 
-    axios.get(`${apiURL}/emp/register`, { headers: { Authorization: `Bearer ${jwt}` } }).then(res => this.setState({
-      user: res.data
-    })).catch(err => {
-      localStorage.removeItem('cool-jwt');
-      this.props.history.push('/NewEmployee');
-    });
+    this.setState({
+      user: jwt
+    })
+    // .catch(err => {
+    //   localStorage.removeItem('currentUser');
+    //   this.props.history.push('/AdminHeader');
+    // });
+
+  //   axios.get(`${apiURL}/emp/register`, { 
+  //     headers: { Authorization: `Bearer ${jwt}` } }).then(res => this.setState({
+  //     user: res.data
+  //   })).catch(err => {
+  //     localStorage.removeItem('currentUser');
+  //     this.props.history.push('/AdminHeader');
+  //   });
   }
 
   render() {

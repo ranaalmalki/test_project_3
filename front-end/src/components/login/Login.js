@@ -32,13 +32,14 @@ class Login extends Component {
 
   submit(e) {
     e.preventDefault();
-    axios.post('http://localhost:5000/api/admin/login', {
+
+    axios.post('http://localhost:5000/api/admin/login',{
       empUsername: this.state.empUsername,
       password: this.state.password
     }).then(res => {
       console.warn("res", res)
       localStorage.setItem('currentUser', res.data.token)
-      this.props.history.push('/Tickets');
+      this.props.history.push('/AdminHeader');
       return res;
     })
     .catch(error => {
