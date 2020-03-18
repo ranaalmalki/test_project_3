@@ -13,11 +13,11 @@ export default class Tickets extends React.Component{
     componentDidMount(){
         // Mack API call 
         getAllTicket()
-        .then( (reponse)=>{
-            console.log('reponse.data' , reponse.data )
-            const Tickets = reponse.data.filter((Ticket) => {
+        .then( (repose)=>{
+            console.log('repose.data' , repose.data )
+            const Tickets = repose.data.filter((Ticket) => {
                 if(Ticket.TicketState !== 'closed'){
-                    return reponse.data
+                    return repose.data
                 }
               });this.setState( {Tickets} );
         })
@@ -30,7 +30,7 @@ export default class Tickets extends React.Component{
             console.log('This Ticket ID to Delete', id);
             closeTicket(id)
             .then( (res)=>{
-              console.log(`The Ticket ID to Delete${id} , hase been deleted`);
+              console.log(`The Ticket ID to Delete${id} , hasa been deleted`);
               const newList = this.state.Tickets.filter((Ticket) => {
                   return Ticket._id !== id;
                 });

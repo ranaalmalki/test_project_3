@@ -1,12 +1,7 @@
-import React, { Component } from 'react';
-import { getJwt } from './helper';
-import { getInfo } from './decodeToken';
-
-import { withRouter } from 'react-router-dom';
-import axios from 'axios';
-import apiURL from'../../APIconfig';
-import jwt_decode from 'jwt-decode';
-
+import React, { Component } from "react";
+import { getJwt } from "./helper";
+import { getInfo } from "./decodeToken";
+import { withRouter } from "react-router-dom";
 
 class AuthenticatedComponent extends Component {
   constructor(props) {
@@ -14,49 +9,43 @@ class AuthenticatedComponent extends Component {
 
     this.state = {
       admin: undefined,
-      user:  undefined
+      user: undefined
     };
   }
 
-componentDidMount() {
-  const jwt = getJwt();
-  console.log(jwt)
-  let jwt1 = getInfo()
-  if (!jwt) {
-  console.log('no jwt')
-  this.props.history.push('/Login')
-   
-  }else if(jwt1.data.admin === true){
-    this.setState({
-      admin: jwt
-    })
-  }else if(jwt1.data.admin === false){
-  this.setState({
-    user: jwt
-  })
- }else{
-  this.props.history.push('/Login')}
-}
-
-
-  
-
+  componentDidMount() {
+    const jwt = getJwt();
+    let jwt1 = getInfo().type;
+    // this function is responsible to check if the
+    // token is equal to employee or adamant after
+    // decrypting that token
+    if (!jwt) {
+      this.setState({
+        user: null,
+        admin: null
+      });
+      return;
+    } else if (jwt1 === "admin") {
+      this.setState({
+        admin: jwt
+      });
+    } else if (jwt1 === "emp") {
+      this.setState({
+        user: jwt
+      });
+    }
+  }
   render() {
-    // if (this.state.user!==undefined) {
-    //   return (
-    //     <div><h1>Loading...</h1></div>
-    //   );
-    // }
-console.log("children :",this.props.children)
     return (
       <div>
-
-        { this.state.admin != undefined ? this.props.children[0] : this.props.children[1]}
-
+        {/* check if the state the admin doesn't equal undefined 
+      then the permission we'll go to the second child   */}
+        {this.state.admin !== undefined
+          ? this.props.children[1]
+          : this.props.children[0]}
       </div>
     );
   }
-
 }
 
 export default withRouter(AuthenticatedComponent);
