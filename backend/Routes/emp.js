@@ -112,6 +112,18 @@ router.get('/SendTickets/:EmpId', (req, res) => {
 
       });
   
+//-------------Get ALl Emp ReceivedTickets By Emp ID-------------------
 
+router.get('/ReceivedTickets/:EmpId', (req, res) => {
+    Emp.findById(req.params.EmpId)
+    .populate('receivedTickets') 
+    .exec( (err, oneEmp) =>{
+      if (err) return res.status(404).json(err);
+      console.log('Tickets',oneEmp);
+      res.send(oneEmp.receivedTickets)
+        });
+
+      });
+  
 
 module.exports = router;

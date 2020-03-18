@@ -1,15 +1,15 @@
-@import url("https://fonts.googleapis.com/css?family=Cabin:400,700&subset=latin-ext");
-* {
+/* @import url("https://fonts.googleapis.com/css?family=Cabin:400,700&subset=latin-ext"); */
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 
-body {
+/* body {
   background-color: lightblue;
   padding: 1rem;
-}
-.TimeLine {
+} */
+.TimeLineSendTickets {
     border-left: 0.25em solid #4298c3;
     background: rgba(255, 255, 255, 0.1);
     margin: 0 auto;
@@ -18,16 +18,31 @@ body {
     padding-left: 3em;
     list-style: none;
     text-align: left;
-    margin-left: 10em;
+    margin-left: 5em;
+    /* margin-right: 5em; */
+    border-radius: 0.5em;
+    /* min-width: 15em; */
+    width: 20em;
+  }
+  .TimeLineReceivedTickets {
+    border-left: 0.25em solid #4298c3;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0 auto;
+    line-height: 1.4em;
+    padding: 1em;
+    padding-left: 3em;
+    list-style: none;
+    text-align: left;
+    /* margin-left: 10em; */
     margin-right: 5em;
     border-radius: 0.5em;
     /* min-width: 15em; */
-    width: 40em;
+    width: 20em;
   }
 .card {
   max-width: 500px;
   margin: 2rem auto;
-  background-color: #3b3a36;
+  background-color: #3b3a36a9;
   padding: 2rem;
   position: relative;
 }
@@ -42,7 +57,7 @@ p:after {
   display: block;
   width: 2rem;
   height: 2rem;
-  background-color: lightblue;
+  background-color: #e3e4e3;
   position: absolute;
 }
 
@@ -50,14 +65,14 @@ p:after {
   top: 0;
   left: 0;
   border-bottom-right-radius: 100%;
-  box-shadow: -1px -1px lightblue;
+  box-shadow: -1px -1px #e3e4e3;
 }
 
 .card:after {
   bottom: 0;
   right: 0;
   border-top-left-radius: 100%;
-  box-shadow: 1px 1px lightblue;
+  box-shadow: 1px 1px #e3e4e3;
 }
 
 p,.Description{
@@ -73,7 +88,8 @@ p:before,
   top: 0;
   right: 0;
   border-bottom-left-radius: 100%;
-  box-shadow: 1px -1px lightblue;
+  box-shadow: 1px -1px #e3e4e3;
+  /* lightblue */
 }
 
 p:after,
@@ -81,7 +97,7 @@ p:after,
   bottom: 0;
   left: 0;
   border-top-right-radius: 100%;
-  box-shadow: -1px 1px lightblue;
+  box-shadow: -1px 1px #e3e4e3;
 }
 
 .Description-none{
@@ -89,3 +105,10 @@ p:after,
     text-indent: 2px;
     display: none;
   } 
+  button {
+    background: none;
+    border: 2px solid;
+    line-height: 1;
+  }
+
+  

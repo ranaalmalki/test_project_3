@@ -1,21 +1,22 @@
-//ALL Ticket
+//ALL Received Tickets 
 import React from 'react';
-import SendTicket from './SendTicket'
-import { getEmpSendTickets } from '../api';
-import './SendTickets.css'; 
+import ReceivedTicket from './ReceivedTicket'
+import { getEmpSendTickets,getreceivedTickets } from '../api';
+import '../SendTicket/SendTickets.css'; 
 
-export default class SendTickets extends React.Component{
+export default class ReceivedTickets extends React.Component{
 
     constructor(props){
         super(props)
 
         this.state = {
-        Emp_SendTickets:[], 
+        Emp_ReceivedTickets:[], 
         };
       }
 
     componentDidMount(){
         // Mack API call 
+        // getreceivedTickets("5e70bf444d6ce11c64e4e3ad")
         getEmpSendTickets("5e70bf444d6ce11c64e4e3ad")
         .then( (reponse)=>{
             console.log('reponse.data' , reponse.data )
@@ -26,18 +27,18 @@ export default class SendTickets extends React.Component{
         })
     }
 
-    setTickets = (Emp_SendTickets) =>{
-        this.setState( {Emp_SendTickets} );
+    setTickets = (Emp_ReceivedTickets) =>{
+        this.setState( {Emp_ReceivedTickets} );
       }
 
 
    render(){
       let allTickets = <h3> No Tickets! :( </h3>
 
-      if(this.state.Emp_SendTickets.length > 0 ){
-      allTickets= this.state.Emp_SendTickets.map( (Tickets , index)=> {
+      if(this.state.Emp_ReceivedTickets.length > 0 ){
+      allTickets= this.state.Emp_ReceivedTickets.map( (Tickets , index)=> {
           return(
-          <SendTicket 
+          <ReceivedTicket 
           id={Tickets._id}
           TicketType={Tickets.TicketType}
           TicketState={Tickets.TicketState}
@@ -48,8 +49,8 @@ export default class SendTickets extends React.Component{
 
     return(
         <div className="content">
-            <h2>Your Tickets</h2>
-        <ul className="TimeLineSendTickets">
+            <h2>Received Ticket</h2>
+            <ul className="TimeLineReceivedTickets">
             {allTickets}
         </ul>
         </div>);
