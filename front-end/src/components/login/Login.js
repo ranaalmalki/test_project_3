@@ -38,18 +38,18 @@ class Login extends Component {
     }).then(res => {
       console.warn("res", res)
       localStorage.setItem('currentUser', res.data.token)
-      let jwt1 = getInfo()
+      let jwt1 = getInfo().type
 
-      if(jwt1.data.admin === true){
+      if(jwt1=== "admin"){
         console.log('a:',jwt1)
-        this.props.push('/AdminHeader')
-       }else if(jwt1.data.admin === false){
-        this.props.push('/EmpHeader')
+        this.props.history.push('/AdminHeader')
+       }else if(jwt1 === "emp"){
+        this.props.history.push('/EmpHeader')
         }else if(jwt1 === undefined){
           console.log('b: ',jwt1)
-         this.props.push('/Login')
+         this.props.history.push('/Login')
     }
-      
+    
       return res;
     })
     .catch(error => {

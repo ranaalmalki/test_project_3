@@ -10,6 +10,7 @@ export default class AdminHeader extends React.Component{
     history:null,
     };
   }
+
 componentDidMount(){
     // Mack API call 
     getAllTicket()
@@ -25,6 +26,10 @@ componentDidMount(){
         console.log(' API error: ',error );
     })
 }
+nave(e){
+  e.preventDefault();
+  this.props.history.push('/Login')
+}
     render(){
     return (
 <div className="page">
@@ -39,8 +44,9 @@ componentDidMount(){
     <div className="nav-content" tabindex="0">
       <ul>
         <li><a href="">New Employee</a></li>
-        <li><a href="">History</a></li>
-        <li><a href="">Log out </a></li>
+        <li><a onClick={e=> this.nave(e)}>History</a></li>
+
+        <li onClick={e=> this.nave(e)} >Log out</li>
       </ul>
     </div>
   </div>
