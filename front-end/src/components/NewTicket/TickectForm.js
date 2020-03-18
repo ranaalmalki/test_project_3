@@ -1,15 +1,20 @@
 import React from "react";
-
+import './ticketform.css';
 class TicketForm extends React.Component {
    
   render() {
     return (
     <div>
-  <form onSubmit = {e=>this.props.formAdd(e)}  >
+
+  <form  className="parent-wrapper"   >
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h3>Add New Ticket</h3>
+        <div className="subscribe-wrapper">
+        <div >
         <div>
-          <label htmlFor="TicketType">TicketType</label>
+          <label htmlFor="TicketType">TicketType</label><br/>
           <input
+          className="subscribe-input"
             required
             name="TicketType"
             value={this.props.TicketType}
@@ -19,33 +24,38 @@ class TicketForm extends React.Component {
           />
         </div>
         <div>
-          <label htmlFor="TicketDescription">TicketDescription</label>
+          <label htmlFor="TicketDescription">TicketDescription</label><br/>
           <input
+            className="subscribe-input"
             required
             name="TicketDescription"
             value={this.props.TicketDescription}
-            type="texte"
+            type="text"
             placeholder="TicketDescription"
             onChange={this.props.handleChange}
           />
         </div>
-        <div>
-          <label htmlFor="TicketState">TicketState</label>
-          <input
-            required
-            name="TicketState"
-            value={this.props.TicketState}
-            type="text"
-            placeholder="TicketState"
-            onChange={this.props.handleChange}
-          />
         </div>
-        
+        <div>
+            <label htmlFor="TicketState">TicketState:</label><br/>
 
-        <button type="submit">Add</button>
-        {/* <button type="submit">Edit</button> */}
+            <select
+              name="TicketState"
+              
+              type="text"
+              placeholder="TicketState"
+              onChange={this.props.handleChange}
+            >
+              <option value={this.props.TicketState}>Open</option>
+              <option  value={this.props.TicketState}>On Progress</option>
+        
+            </select>
+        </div>
+        <div className="submit-btn" onClick= {e=>this.props.formAdd(e)}>Add</div>
+        </div>
 
         </form>
+        
     </div>
     );
   }

@@ -21,7 +21,7 @@ router.post('/:empId', (req, res) => {
   // find emp in db by id and add new ticket
   Emp.findById(req.params.empId, async (error, foundEmp) => {
     try {
-      await foundEmp.Tickets.push(savedTicket);
+      await foundEmp.sendTickets.push(savedTicket);
       foundEmp.save()
       res.status(200).json(savedTicket);
     }

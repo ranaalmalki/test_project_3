@@ -24,7 +24,7 @@ export const AddNewEmployee = req => {
    })
  }
 //Add new Tickect 
- export const AddNewTicket = (req ,id) => {
+ export const AddNewTicket = (req,id) => {
   return axios({
     method: 'POST',
     url: apiURL + `/api/${id}`,
@@ -38,7 +38,7 @@ export const AddNewEmployee = req => {
 }
 
 //Update Ticket 
-export const EditeTicket = (req,id) => {
+export const UpdateTicket = (req,id) => {
   return axios({
     method: 'patch',
     url: apiURL + `/api/UpdateTicket/${id}`,
