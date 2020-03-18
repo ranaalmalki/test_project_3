@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { getJwt } from './helper';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import apiURL from'../../APIconfig';
+
 
 class AuthenticatedComponent extends Component {
   constructor(props) {
@@ -18,11 +20,11 @@ class AuthenticatedComponent extends Component {
       this.props.history.push('/Login');
     }
 
-    axios.get('/admin/allTickets', { headers: { Authorization: `Bearer ${jwt}` } }).then(res => this.setState({
+    axios.get(`${apiURL}/emp/register`, { headers: { Authorization: `Bearer ${jwt}` } }).then(res => this.setState({
       user: res.data
     })).catch(err => {
-      localStorage.removeItem('my-jwt');
-      this.props.history.push('/Login');
+      localStorage.removeItem('cool-jwt');
+      this.props.history.push('/NewEmployee');
     });
   }
 

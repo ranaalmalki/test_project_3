@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { BehaviorSubject } from 'rxjs';
+import jwt_decode from 'jwt-decode';
+
+
 import './login.css';
 
 
+const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
 class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       empUsername: '',
-      password: ''
+      password: '',
+      currentUser: currentUserSubject.asObservable(),
+      get currentUserValue () { return currentUserSubject.value }
+
     };
 
     this.change = this.change.bind(this);
@@ -29,14 +37,24 @@ class Login extends Component {
       password: this.state.password
     }).then(res => {
       console.warn("res", res)
-      localStorage.setItem('my-jwt', res.data.token);
+      localStorage.setItem('currentUser', res.data.token)
+      this.props.history.push('/Tickets');
+      return res;
+    })
+    .catch(error => {
+      console.log("ERROR: ", error);
     });
-    
-  }
+};
+
+
 
   render() {
-    return (
 
+   let a = localStorage.getItem('currentUser')
+   if(a !== null) { console.log(jwt_decode(a))}
+   
+    return (
+    
       <div class="container" onclick="onclick">
         <div class="top"></div>
         <div class="bottom"></div>
@@ -46,7 +64,7 @@ class Login extends Component {
             <input type="text" name="empUsername" onChange={e => this.change(e)} value={this.state.empUsername} />
             <input type="password" placeholder="password" name="password" onChange={e => this.change(e)}
               value={this.state.password} />
-            <button type="submit">Submit</button>
+            <button type="submit" >Submit</button>
           </form>
           <h2>&nbsp;</h2>
         </div>

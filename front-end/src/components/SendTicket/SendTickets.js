@@ -1,35 +1,43 @@
 //ALL Ticket
 import React from 'react';
-import Ticket from './Ticket'
-import { getAllTicket } from '../api';
-import './Tickets.css'; 
-export default class Tickets extends React.Component{
+import SendTicket from './SendTicket'
+import { getEmpSendTickets } from '../api';
+import './SendTickets.css'; 
+
+export default class SendTickets extends React.Component{
+
     constructor(props){
         super(props)
+
         this.state = {
-          Tickets:[], 
+        Emp_SendTickets:[], 
         };
       }
-      setTickets = (Tickets) =>{
-        this.setState( {Tickets} );
-      }
+
     componentDidMount(){
         // Mack API call 
-        getAllTicket()
+        getEmpSendTickets("5e70bf444d6ce11c64e4e3ad")
         .then( (reponse)=>{
-            console.log('reponse.data.Tickets' , reponse.data )
+            console.log('reponse.data' , reponse.data )
             this.setTickets(reponse.data)
         })
         .catch( (error)=>{
             console.log(' API error: ',error );
         })
     }
-  render(){
+
+    setTickets = (Emp_SendTickets) =>{
+        this.setState( {Emp_SendTickets} );
+      }
+
+
+   render(){
       let allTickets = <h3> No Tickets! :( </h3>
-      if(this.state.Tickets.length > 0 ){
-      allTickets= this.state.Tickets.map( (Tickets , index)=> {
+
+      if(this.state.Emp_SendTickets.length > 0 ){
+      allTickets= this.state.Emp_SendTickets.map( (Tickets , index)=> {
           return(
-          <Ticket 
+          <SendTicket 
           id={Tickets._id}
           TicketType={Tickets.TicketType}
           TicketState={Tickets.TicketState}
@@ -37,19 +45,14 @@ export default class Tickets extends React.Component{
           key={index} /> 
           );
       })}
+
     return(
-        // <>
-        // <h1> All Tickets.. </h1>
-        // {allTickets}
-        // </>);
-        <>
         <div className="content">
-            <h1>ALL Tickets</h1>
-        <ul className="all">
+            <h2>Your Tickets</h2>
+        <ul className="TimeLineSendTickets">
             {allTickets}
         </ul>
-        </div>
-        </>
-        );
+        </div>);
   }
-}
+
+} 
