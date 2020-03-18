@@ -7,11 +7,9 @@ import { getInfo } from "../login/decodeToken";
 class Employee extends React.Component {
   constructor() {
     super();
-
     this.addTicket = this.addTicket.bind(this);
     this.EditUpdateTicket = this.EditUpdateTicket.bind(this);
   }
-
   addTicket = tic => {
     // Make an axios request
     console.log(tic, "Employee");
