@@ -30,6 +30,10 @@ nave(e){
   e.preventDefault();
   this.props.history.push('/Login')
 }
+nave(e){
+  e.preventDefault();
+  this.props.history.push('/Login')
+}
     render(){
     return (
 <div className="page">
@@ -45,7 +49,6 @@ nave(e){
       <ul>
         <li><a href="">New Employee</a></li>
         <li><a onClick={e=> this.nave(e)}>History</a></li>
-
         <li onClick={e=> this.nave(e)} >Log out</li>
       </ul>
     </div>
