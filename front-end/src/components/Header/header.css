@@ -212,3 +212,18 @@ img {
   background-color:transparent;
   overflow: scroll;
 }
+
+.NewEmployee-none{
+  display: none;
+
+}
+.NewEmployee-display{
+  display: block;
+
+}
+.Tickets-display{
+  display:block;
+}
+.Tickets-none{
+  display:none;
+}

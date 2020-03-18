@@ -3,6 +3,7 @@ import { AddNewTicket, UpdateTicket } from "../api";
 import NewTicket from "./NewTicket";
 import EditTicket from "./EditTicket";
 import { getInfo } from "../login/decodeToken";
+
 class Employee extends React.Component {
   constructor() {
     super();
@@ -24,6 +25,7 @@ class Employee extends React.Component {
         console.log("API ERROR: ", error);
       });
   };
+
   render() {
     return (
       <div>

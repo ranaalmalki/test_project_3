@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./newemployee.css";
 class NewEmployee extends React.Component {
   constructor() {
     super();
@@ -16,78 +16,105 @@ class NewEmployee extends React.Component {
       [event.target.name]: event.target.value
     });
 
-    formSubmit= e=>{
-        const newEmployee = this.state;
-console.log(newEmployee," NewEmployee");
-        e.preventDefault();
-        this.props.addEmployee(newEmployee)
-    }
+  formSubmit = e => {
+    const newEmployee = this.state;
+    // this.props.histroy('/AdminHeader');
+    console.log(newEmployee, " NewEmployee");
+    e.preventDefault();
+    this.props.addEmployee(newEmployee);
+    // this.props.AddClicked();
+  };
 
   render() {
     const { empFullName, email, empUsername, password, empPhone } = this.state;
 
     return (
-        <div>
-            <form onSubmit = {e=>this.formSubmit(e)}>
-        <h3>Add New Employee</h3>
-        <div>
-          <label htmlFor="empFullName">empFullName</label>
-          <input
-            required
-            name="empFullName"
-            value={empFullName}
-            type="empFullName"
-            placeholder="empFullName"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="empUsername">empUsername</label>
-          <input
-            required
-            name="empUsername"
-            value={empUsername}
-            type="empUsername"
-            placeholder="empUsername"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            required
-            name="email"
-            value={email}
-            placeholder="Email"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            required
-            name="password"
-            value={password}
-            type="password"
-            placeholder="Password"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="empPhone">empPhone</label>
-          <input
-            required
-            name="empPhone"
-            value={empPhone}
-            type="empPhone"
-            placeholder="empPhone"
-            onChange={this.handleChange}
-          />
-        </div>
+      <div>
+        <form className="parent-wrappe">
+          <button type="button" className="close" data-dismiss="modal">
+            &times;
+          </button>
 
-        <button type="submit">Add</button>
+          <h3>Add New Employee</h3>
+          <div className="subscribe-wrappe">
+            <div>
+              <label>FullName</label>
+              <br />
+              <input
+                className="subscribe-input"
+                required
+                name="empFullName"
+                value={empFullName}
+                type="empFullName"
+                placeholder="empFullName"
+                onChange={this.handleChange}
+              />
+            </div>
+            <div>
+              <br />
+              <label>Username</label>
+              <br />
+              <input
+                className="subscribe-input"
+                required
+                name="empUsername"
+                value={empUsername}
+                type="empUsername"
+                placeholder="empUsername"
+                onChange={this.handleChange}
+              />
+            </div>
+            <div>
+              <br />
+              <label>Email</label>
+              <br />
+              <input
+                className="subscribe-input"
+                required
+                name="email"
+                value={email}
+                placeholder="Email"
+                onChange={this.handleChange}
+              />
+            </div>
+            <div>
+              <br />
+              <label>Password</label>
+              <br />
+              <input
+                className="subscribe-input"
+                required
+                name="password"
+                value={password}
+                type="password"
+                placeholder="Password"
+                onChange={this.handleChange}
+              />
+            </div>
+            <div>
+              <br />
+              <label>Phone</label>
+              <br />
+              <input
+                className="subscribe-input"
+                required
+                name="empPhone"
+                value={empPhone}
+                type="empPhone"
+                placeholder="empPhone"
+                onChange={this.handleChange}
+              />
+            </div><br/>
+            <a href="/AdminHeader"><i className="material-icons">arrow_back</i></a>
+
+            <div className="submit-btn" onClick={e => this.formSubmit(e)}>
+              Add
+            </div>
+            
+            
+          </div>
         </form>
-        </div>
+      </div>
     );
   }
 }
