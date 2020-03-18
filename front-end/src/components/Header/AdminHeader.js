@@ -15,14 +15,8 @@ export default class AdminHeader extends React.Component {
       FltirTicket:"display"
     };
   }
-<<<<<<< HEAD
   componentDidMount() {
     // Mack API call
-=======
-
-componentDidMount(){
-    // Mack API call 
->>>>>>> f56bff5df239050a02f8845fad5d7adcb8f3b23f
     getAllTicket()
       .then(reponse => {
         console.log("reponse.data", reponse.data);
@@ -60,7 +54,6 @@ AddClicked = () => {
       Fltir: 'none' }); 
   }
 }
-<<<<<<< HEAD
   render() {
     return (
       <div className="page">
@@ -93,40 +86,6 @@ AddClicked = () => {
               </div>
 <div className={`NewEmployee-${this.state.Fltir}`}>
   <NewEmployee AddClicked={this.AddClicked}/>
-=======
-nave(e){
-  e.preventDefault();
-  this.props.history.push('/Login')
-}
-nave(e){
-  e.preventDefault();
-  this.props.history.push('/Login')
-}
-    render(){
-    return (
-<div className="page">
-  <header tabindex="0">Enjaz</header>
-  <div className="nav-container">
-    <div className="bg"></div>
-    <div className="button" tabindex="0">
-      <span className="icon-bar"></span>
-      <span className="icon-bar"></span>
-      <span className="icon-bar"></span>
-    </div>
-    <div className="nav-content" tabindex="0">
-      <ul>
-        <li><a href="">New Employee</a></li>
-        <li><a onClick={e=> this.nave(e)}>History</a></li>
-        <li onClick={e=> this.nave(e)} >Log out</li>
-      </ul>
-    </div>
-  </div>
-  <main>
-    <div className="content">
-    <Tickets />
-    </div>
-  </main>
->>>>>>> f56bff5df239050a02f8845fad5d7adcb8f3b23f
 </div>
             </div>
           </main>
