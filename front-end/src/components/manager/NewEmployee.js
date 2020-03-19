@@ -21,6 +21,7 @@ class NewEmployee extends React.Component {
      console.log(newEmployee, " NewEmployee");
     e.preventDefault();
     this.props.addEmployee(newEmployee);
+
    };
 
   render() {

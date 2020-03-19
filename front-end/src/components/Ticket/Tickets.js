@@ -1,7 +1,7 @@
 //ALL  Tickets 
 import React from 'react';
 import Ticket from './Ticket'
-import { getAllTicket , closeTicket } from '../api';
+import { getAllTicket , closeTicket ,deleteTicket } from '../api';
 import './Tickets.css'; 
 export default class Tickets extends React.Component{
     constructor(props){
@@ -24,6 +24,23 @@ export default class Tickets extends React.Component{
         .catch( (error)=>{
             console.log(' API error: ',error );
         })
+    }
+    // Make an API Call to Delete an Ticket
+    deleteOneTicket = (id) => {
+        console.log('This Ticket ID to Delete 2', id);
+        deleteTicket(id)
+            .then((res) => {
+                console.log(`The Ticket ID to Delete${id} , hasa been deleted`);
+                const newList = this.state.Tickets.filter((Ticket) => {
+                    return Ticket._id !== id;
+                });
+                this.setState({ Tickets: newList });
+                // this.setTickets(newList);
+                console.log(' newList ==> deleteOneTicket : ', newList);
+            })
+            .catch((err) => {
+                console.log(' fun closeClick deleteTicket ==>  ', err);
+            })
     }
           // Make an API Call to Delete an Ticket
           closeOneTicket = (id) => {
@@ -51,6 +68,7 @@ export default class Tickets extends React.Component{
           id={Tickets._id}
           TicketType={Tickets.TicketType}
           TicketState={Tickets.TicketState}
+          deleteOneTicket={this.closeOneTicket}
           TicketDescription={Tickets.TicketDescription}
           closeOneTicket={this.closeOneTicket}
           key={index} /> 

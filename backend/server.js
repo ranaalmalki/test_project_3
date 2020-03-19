@@ -31,18 +31,18 @@ app.use((req, res, next) => {
 
 
 
-const checkUserType = function (req, res, next) {
-  const userType = req.originalUrl.split('/')[2];
-  console.log(userType)
-  // Bring in the passport authentication
-  require('./config/passport')(userType, passport);
-  next();
-};
+// const checkUserType = function (req, res, next) {
+//   const userType = req.originalUrl.split('/')[2];
+//   console.log(userType)
+//   // Bring in the passport authentication
+//   require('./config/passport')(userType, passport);
+//   next();
+// };
 
-app.use(checkUserType);
+// app.use(checkUserType);
 
 app.use("/api/emp", empRoute);
-app.use("/api/admin", adminRoute);
+// app.use("/api/admin", adminRoute);
 app.use("/api", transactionRoute);
 // Handler for 404 - Resource Not Found
 app.use((req, res, next) => {

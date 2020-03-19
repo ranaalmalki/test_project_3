@@ -26,11 +26,13 @@ closeClick = (e) => {
     return(
       <li className="event">
       <div className="member-infos">
-        <h1
+      <h1
         onClick={this.TicketClicked}>
           {this.props.TicketState} <span  class="shots-number"> 
           <button className="raise"
-          onClick={this.closeClick}> Close </button> </span>
+          onClick={this.closeClick}> Close </button>
+          <button className="raise"
+          onClick={this.closeClick}> Delete </button> </span>
         </h1>
         <div className={`DescriptionFltir-${this.state.Fltir}`}>
           <span>{this.props.TicketType}</span>

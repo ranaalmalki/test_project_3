@@ -3,9 +3,8 @@ import React from "react";
 import "./header.css";
 import Tickets from "../Ticket/Tickets";
 import { getAllTicket } from "../api";
-import NewEmployee from "../manager/NewEmployee";
-import { Switch, Route, BrowserRouter as Router, Link } from "react-router-dom";
-
+import Manager from "../manager/Manager";
+import {getInfo} from '../login/decodeToken'
 export default class AdminHeader extends React.Component {
   constructor(props) {
     super(props);
@@ -43,23 +42,24 @@ export default class AdminHeader extends React.Component {
         FltirTicket:'display'}); 
     }
 }
-AddClicked = () => {
-  if( this.state.FltirTicket === 'display'){
-     this.setState({ 
-      FltirTicket:'none', 
-      Fltir: 'display'}); 
-  }
-  else{
-      this.setState({ FltirTicket:'display',
-      Fltir: 'none' }); 
-  }
-}
+  // AddClicked = () => {
+  //   if( this.state.FltirTicket === 'display'){
+  //      this.setState({ 
+  //       FltirTicket:'none', 
+  //       Fltir: 'display'}); 
+  //   }
+  //   else{
+  //       this.setState({ FltirTicket:'display',
+  //       Fltir: 'none' }); 
+  //   }
+  // }
 logOut= e =>{
   e.preventDefault();
   this.props.history.push('/Login')
   localStorage.clear('currentUser')
 }
   render() {
+    console.log(getInfo())
     return (
       <div className="page">
         <header tabindex="0">Enjaz</header>
@@ -90,7 +90,7 @@ logOut= e =>{
               <Tickets />
               </div>
 <div className={`NewEmployee-${this.state.Fltir}`}>
-  <NewEmployee AddClicked={this.AddClicked}/>
+  <Manager AddClicked={this.AddClicked}/>
 </div>
             </div>
           </main>

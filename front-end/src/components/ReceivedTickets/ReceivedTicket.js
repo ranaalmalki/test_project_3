@@ -33,7 +33,7 @@ EditUpdateTicket = (tic) => {
   UpdateTicket(tic,mId)
     .then(response => {
       console.log(
-        `The Ticket ${tic.TicketType} has been Edit successfully.`
+        `The Ticket ${response.tic.TicketType} has been Edit successfully.`
       );
         })
     .catch(error => {
@@ -63,7 +63,7 @@ togglehandler(){
       <p>
           {this.props.TicketDescription}</p>
 
-        <button onClick={()=>this.togglehandler}className="raise"> Edit </button>  
+        <button onClick={()=>this.togglehandler()}className="raise"> Edit </button>  
       </div>
       </div>
       </li>

@@ -27,7 +27,7 @@ router.post('/:empId', (req, res) => {
   });
 });
 //-------------Get all tickets-------------------
-router.get('/admin/allTickets', (req, res) => {
+router.get('/emp/allTickets', (req, res) => {
   Ticket.find({})
   .populate('TicketsEmp')
   .exec((err, Emp) => {

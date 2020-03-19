@@ -67,12 +67,6 @@ module.exports.getUserByUsername = (empUsername, callback) => {
   Emp.findOne(query, callback);
 };
 
-module.exports.getAdminByUsername = (empUsername, callback) => {
-  const query = {
-    empUsername: empUsername,
-  };
-  Emp.findOne(query, callback);
-};
 // to Register the user
 module.exports.addUser = (newEmp, callback) => {
   bcrypt.genSalt(10, (err, salt) => {

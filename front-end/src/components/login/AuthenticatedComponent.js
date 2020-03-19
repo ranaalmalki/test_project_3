@@ -15,7 +15,7 @@ class AuthenticatedComponent extends Component {
 
   componentDidMount() {
     const jwt = getJwt();
-    let jwt1 = getInfo().type;
+    let jwt1 = getInfo().data.admin;
     // this function is responsible to check if the
     // token is equal to employee or adamant after
     // decrypting that token
@@ -25,11 +25,11 @@ class AuthenticatedComponent extends Component {
         admin: null
       });
       return;
-    } else if (jwt1 === "admin") {
+    } else if (jwt1 === true) {
       this.setState({
         admin: jwt
       });
-    } else if (jwt1 === "emp") {
+    } else if (jwt1 === false) {
       this.setState({
         user: jwt
       });

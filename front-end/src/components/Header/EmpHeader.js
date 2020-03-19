@@ -7,6 +7,14 @@ import NewTicket from '../NewTicket/NewTicket';
 import { getInfo } from "../login/decodeToken";
 import { AddNewTicket } from "../api";
 
+export default class EmpHeader extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+  
+      toggle:false,
+    };
+  }
   logOut= e =>{
     e.preventDefault();
     this.props.history.push('/Login')
@@ -16,9 +24,24 @@ import { AddNewTicket } from "../api";
     e.preventDefault();
 
     this.setState({
-      toggle:true
+      toggle: !this.state.toggle
     })
   }
+  addTicket = tic => {
+    // Make an axios request
+    console.log(tic, "Employee");
+    let mId = getInfo().data._id;
+    console.log(mId);
+    AddNewTicket(tic, mId)
+      .then(response => {
+        console.log(
+          `The Ticket ${tic.empFullName} has been added successfully.`
+        );
+      })
+      .catch(error => {
+        console.log("API ERROR: ", error);
+      });
+  };
     render(){
     return (
 <div className="page">
@@ -39,17 +62,17 @@ import { AddNewTicket } from "../api";
       <ul>
 
         <li onClick={e => this.logOut(e)}>LogOut</li>
-        <li><a href="/Login">New Ticket</a></li>
-        <li><a href="/Login">New Ticket</a></li>
-        <li><a href="/Login">New Ticket</a></li>
-        <li><a href="/Login">New Ticket</a></li>
+        <li><a onClick={e => this.togglehandler(e)}>New Ticket</a></li>
+
 
     </ul>
     </div>
   </div>
-  {this.state.toggle===false?
 
   <main>
+ 
+  {this.state.toggle===false?
+<>
 
     <div className="container-SendTickets">
     <SendTickets />
@@ -57,10 +80,13 @@ import { AddNewTicket } from "../api";
     <div className="container-ReceivedTickets">
     <ReceivedTickets />
     </div>
+</>
+    : <NewTicket addTicket={this.addTicket} />
+    }
+
   </main>
 
-:<NewTicket addTicket={this.addTicket} />
-    }
+
 </div>
     );
   }

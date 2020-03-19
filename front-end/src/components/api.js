@@ -4,25 +4,33 @@ import axios from 'axios';
 
 // Get All Ticket
 export const getAllTicket = () => {
-  return axios.get(`${apiURL}/admin/allTickets`);
+  return axios.get(`${apiURL}/emp/allTickets`);
 }
 
 
 //Add new Employee
 export const AddNewEmployee = req => {
-   return axios({
-     method: 'POST',
-     url: apiURL + '/admin/register',
-     data:{
-         empFullName:req.empFullName,
-         email: req.email,
-         empUsername:req.empUsername,
-         password: req.password,
-         empPhone: req.empPhone,
-     }
-     
-   })
- }
+  return axios({
+    method: 'POST',
+    url: apiURL + '/emp/register',
+    data:{
+      empFullName:req.empFullName,
+        email: req.email,
+        empUsername:req.empUsername,
+        password: req.password,
+        empPhone: req.empPhone,
+    }
+    
+  })
+}
+//delete Ticket 
+export const deleteTicket = (id) => {
+  return axios({
+    method: 'delete',
+    url: apiURL + `/DeleteTicket/${id}`,
+  })
+}
+
 //Add new Tickect 
  export const AddNewTicket = (req,id) => {
   return axios({
@@ -71,13 +79,3 @@ export const getreceivedTickets = (id) => {
   return axios.get(`${apiURL}/emp/ReceivedTickets/${id}`);
 } 
 
-// //close Ticket 
-// export const closeTicket = (id) => {
-//   return axios({
-//     method: 'patch',
-//     url: apiURL + `/UpdateTicket/${id}`,
-//     data:{
-//       TicketState: 'closed',
-//     }
-//   })
-// }

@@ -13,10 +13,10 @@ class Manager extends React.Component{
         console.log(emp,"Manager");
         let mId = getInfo().data._id
 
-        AddNewEmployee(emp,mId)
+        AddNewEmployee(emp)
           .then(response => {
             console.log(
-              `The Employee ${emp.empFullName} has been added successfully.`
+              // `The Employee ${emp.empFullName} has been added successfully.`
             );
               })
           .catch(error => {
@@ -27,7 +27,7 @@ class Manager extends React.Component{
         return(
 
             <div>
-<NewEmployee addEmployee={this.addEmployee}/>            
+<NewEmployee addEmployee={() =>this.addEmployee()}/>            
 </div>
         );
     }
