@@ -54,6 +54,11 @@ AddClicked = () => {
       Fltir: 'none' }); 
   }
 }
+logOut= e =>{
+  e.preventDefault();
+  this.props.history.push('/Login')
+  localStorage.clear('currentUser')
+}
   render() {
     return (
       <div className="page">
@@ -74,7 +79,7 @@ AddClicked = () => {
                   <a href="">History</a>
                 </li>
                 <li>
-                  <a href="">Log out </a>
+                  <a onClick={e => this.logOut(e)}>Log out </a>
                 </li>
               </ul>
             </div>

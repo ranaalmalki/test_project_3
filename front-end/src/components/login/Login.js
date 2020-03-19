@@ -29,19 +29,20 @@ class Login extends Component {
     e.preventDefault();
 
     axios
-      .post("http://localhost:5000/api/emp/login", {
+      .post("http://localhost:5000/api/admin/login", {
         empUsername: this.state.empUsername,
         password: this.state.password
       })
       .then(res => {
         console.warn("res", res);
         localStorage.setItem("currentUser", res.data.token);
-        let jwt1 = getInfo().type;
+        let jwt1 = getInfo().data.admin;
 
-        if (jwt1 === "admin") {
+        if (jwt1 === true) {
           console.log("a:", jwt1);
           this.props.history.push("/AdminHeader");
-        } else if (jwt1 === "emp") {
+        } else if (jwt1 === false) {
+          console.log("B:", jwt1);
           this.props.history.push("/EmpHeader");
         } else if (jwt1 === undefined) {
           console.log("b: ", jwt1);
@@ -56,7 +57,11 @@ class Login extends Component {
   }
 
   render() {
+    // let jwt1 = getInfo().type;
+    // console.log("a:", jwt1);
+
     return (
+      
       <div class="container" onclick="onclick">
         <div class="top"></div>
         <div class="bottom"></div>

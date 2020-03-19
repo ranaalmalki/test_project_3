@@ -18,12 +18,10 @@ class NewEmployee extends React.Component {
 
   formSubmit = e => {
     const newEmployee = this.state;
-    // this.props.histroy('/AdminHeader');
-    console.log(newEmployee, " NewEmployee");
+     console.log(newEmployee, " NewEmployee");
     e.preventDefault();
     this.props.addEmployee(newEmployee);
-    // this.props.AddClicked();
-  };
+   };
 
   render() {
     const { empFullName, email, empUsername, password, empPhone } = this.state;

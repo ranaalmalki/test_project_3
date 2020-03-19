@@ -1,8 +1,9 @@
 //ALL Received Tickets 
 import React from 'react';
 import ReceivedTicket from './ReceivedTicket'
-import { getEmpSendTickets,getreceivedTickets } from '../api';
+import { getEmpSendTickets } from '../api';
 import '../SendTicket/SendTickets.css'; 
+import {getInfo} from '../login/decodeToken'
 
 export default class ReceivedTickets extends React.Component{
 
@@ -15,9 +16,11 @@ export default class ReceivedTickets extends React.Component{
       }
 
     componentDidMount(){
+        let mId = getInfo().data._id
+
         // Mack API call 
         // getreceivedTickets("5e70bf444d6ce11c64e4e3ad")
-        getEmpSendTickets("5e70bf444d6ce11c64e4e3ad")
+        getEmpSendTickets(mId)
         .then( (reponse)=>{
             console.log('reponse.data' , reponse.data )
             this.setTickets(reponse.data)

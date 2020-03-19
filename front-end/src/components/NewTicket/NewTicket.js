@@ -23,8 +23,7 @@ class NewTicket extends React.Component {
   };
 
   render() {
-    // const newTicket = this.state;
-
+ 
     return (
       <div>
         <TicketForm handleChange={this.handleChange} newTicket={this.newTicket}  formAdd={this.formAdd}/>

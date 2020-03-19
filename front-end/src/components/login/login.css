@@ -84,3 +84,8 @@ body {
   border: 1px solid #ccc;
   font-family: inherit;
 }
+@media (min-width: 576px){
+.containe{
+  z-index: 1000;
+  max-width: 100%;
+}}

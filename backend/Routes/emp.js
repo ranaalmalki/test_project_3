@@ -64,7 +64,8 @@ router.post('/login', (req, res) => {
                         empUsername: emp.empUsername,
                         empFullName: emp.empFullName,
                         email: emp.email,
-                        empPhone: emp.empPhone
+                        empPhone: emp.empPhone,
+                        admin: emp.admin
                     }
                 }, config.database.secret, {
                     expiresIn: 36000000 // for 1 week time in milliseconds

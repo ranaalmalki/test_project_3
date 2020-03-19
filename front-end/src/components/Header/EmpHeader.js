@@ -6,7 +6,7 @@ import ReceivedTickets from '../ReceivedTickets/ReceivedTickets'
 export default class EmpHeader extends React.Component{
 
 
-  llllll= e =>{
+  logOut= e =>{
     e.preventDefault();
     this.props.history.push('/Login')
     localStorage.clear('currentUser')
@@ -29,7 +29,7 @@ export default class EmpHeader extends React.Component{
     <div className="nav-content" tabindex="0">
       <ul>
 
-        <li onClick={e => this.llllll(e)}>LogOut</li>
+        <li onClick={e => this.logOut(e)}>LogOut</li>
         <li><a href="/Login">New Ticket</a></li>
         <li><a href="/Login">New Ticket</a></li>
         <li><a href="/Login">New Ticket</a></li>

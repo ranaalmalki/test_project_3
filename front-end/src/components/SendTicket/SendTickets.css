@@ -1,13 +1,5 @@
-/* @import url("https://fonts.googleapis.com/css?family=Cabin:400,700&subset=latin-ext"); */
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-} */
-/* body {
-  background-color: lightblue;
-  padding: 1rem;
-} */
+@import url("https://fonts.googleapis.com/css?family=Cabin:400,700&subset=latin-ext");
+  
 .TimeLineSendTickets {
   border-left: 0.25em solid #4298c3;
   background: rgba(255, 255, 255, 0.1);

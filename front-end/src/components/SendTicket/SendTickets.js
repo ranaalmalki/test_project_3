@@ -3,7 +3,7 @@ import React from 'react';
 import SendTicket from './SendTicket'
 import { getEmpSendTickets } from '../api';
 import './SendTickets.css'; 
-
+import {getInfo} from '../login/decodeToken'
 export default class SendTickets extends React.Component{
 
     constructor(props){
@@ -16,7 +16,8 @@ export default class SendTickets extends React.Component{
 
     componentDidMount(){
         // Mack API call 
-        getEmpSendTickets("5e70bf444d6ce11c64e4e3ad")
+        let mId = getInfo().data._id
+        getEmpSendTickets(mId)
         .then( (reponse)=>{
             console.log('reponse.data' , reponse.data )
             this.setTickets(reponse.data)
